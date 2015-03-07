@@ -1,0 +1,47 @@
+<!-- simple-todos.html -->
+<head>
+  <title>WOKs Todo List</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>{{usernameUpperPlusS}}Todo List Hot Push ({{incompleteCount}})</h1>
+      {{>loginButtons}}
+    </header>
+
+<!--   <label class="hide-completed">
+    <input type="checkbox" checked="{{hideCompleted}}" />
+    Erledigte verstecken
+  </label>
+ -->
+    Erledigte verstecken
+  <label class="switch">
+    <input class="switch__input" type="checkbox" checked="{{hideCompleted}}" />
+    <div class="switch__toggle"></div>
+  </label>
+
+
+  <form class="new-task">
+    <input type="text" name="text" class="task-entry" placeholder="Hier neue ToDos eingeben" />
+  </form>
+
+  <!-- OUTPUT -->
+  
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
+  </li>
+</template>

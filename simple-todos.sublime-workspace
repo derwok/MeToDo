@@ -1,0 +1,398 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Cl",
+				"Client"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"print",
+				"printPairs"
+			],
+			[
+				"ana",
+				"anzahlPaare"
+			],
+			[
+				"anza",
+				"anzahlRunden"
+			],
+			[
+				"anzah",
+				"anzahlPaare"
+			],
+			[
+				"anz",
+				"anzahlRunden"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 247.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"instalk",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insert",
+				"InsertDate: Default"
+			],
+			[
+				"colors",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"Package ",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"package",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Print",
+				"Print to HTML: print as HTML via browser"
+			],
+			[
+				"pac ins",
+				"Package Control: Install Package"
+			],
+			[
+				"fig",
+				"Figlet: Add Text"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 181.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/wok/ownCloud/Shared/CMPE_Medregulations/62304 Gliederung.txt",
+		"/Users/wok/source/_js/_MeteorTest/my_cool_app/my_cool_app.html",
+		"/Users/wok/source/_js/_MeteorTest/my_cool_app/my_cool_app.js",
+		"/Users/wok/.bash_profile",
+		"/Users/wok/MethodPark/MIT/Informationskultur - Geistige Turnhalle.txt",
+		"/Users/wok/MethodPark/MIT/Infofluss.pgp",
+		"/Users/wok/MethodPark/MIT/Infofluss.html",
+		"/Users/wok/www/derwok.de/ebookswok/index.php",
+		"/Users/wok/Library/Application Support/Sublime Text 3/Packages/InsertDate/Default (OSX).sublime-keymap",
+		"/Users/wok/Desktop/GP6Pro_Crash.txt",
+		"/Users/wok/Library/Application Support/Sublime Text 3/Packages/User/insert_date.sublime-settings",
+		"/Users/wok/Library/Application Support/Sublime Text 3/Packages/InsertDate/insert_date.sublime-settings",
+		"/Users/wok/Downloads/__Lizenzen_Serials_by_WOK/Little Snitch 3.txt",
+		"/Users/wok/Downloads/__Lizenzen_Serials_by_WOK/ToonTrack EZ Drummer Serial WOK.txt",
+		"/Users/wok/Downloads/__Lizenzen_Serials_by_WOK/Microsoft Office 2011 für Mac",
+		"/Users/wok/bin/pi",
+		"/Users/wok/PiRoot/home/pi/www/asgvertretung/asg_vertretung.js",
+		"/Users/wok/_NO_BACKUP_nosync/_____Flavia_Hörbuch_Logic/Flavia Cut v01/Flavia Cut v01.logic/LgDoc/documentData",
+		"/Users/wok/Documents/Geschäftlich/Kasinogesellschaft/2013 Joomla-Launch/00 Zugangsdaten kg-lev.txt",
+		"/Users/wok/PiRoot/etc/lighttpd/lighttpd.conf",
+		"/Users/wok/Desktop/Feedback Walk Gruppen.pl",
+		"/Users/wok/source/node.js/ASGVertretung/asg_vertretung.js",
+		"/Users/wok/source/node.js/ASGVertretung/delme",
+		"/Users/wok/Documents/Geschäftlich/Steuer_und_Finanzamt/EStE_2013/Elster Online Zertifikat.txt",
+		"/Users/wok/PiRoot/var/www/caldavzapwok/config.js",
+		"/Users/wok/Library/Caches/com.binarynights.ForkLift2/#4/d2094f83-c14b-eb41-a816-a8305185a6fd.ics",
+		"/Users/wok/Library/Caches/com.binarynights.ForkLift2/#3/j3ruaj3blt368ua0klf67hujvo@google.com.ics",
+		"/Users/wok/Documents/Privat-Kinder/Gute-Nacht-Geschichten/Flavia und der tote Fluss/01BuildEpubAndMobi.command",
+		"/Volumes/FRITZ.NAS/Seagate-Portable-01/Musik/Brainstorm - 4th Floor Rock (1989-01-18)/Brainstorm - 4th Floor Rock.txt",
+		"/Users/wok/Desktop/Caddy 2011.txt",
+		"/Users/wok/Desktop/Caddy 2014.txt",
+		"/Users/wok/PiRoot/home/pi/www/dyndns_wokker_linkpc_net.sh",
+		"/Users/wok/PiRoot/var/www/indexwok/index.html",
+		"/Users/wok/www/wokker.de/ssl/wokker.de/www_wokker_de.pem",
+		"/Users/wok/www/wokker.de/ssl/wokker.de/www_wokker_de.key",
+		"/Users/wok/PiRoot/home/pi/www/gateone/gateone/templates/themes/solarized.css",
+		"/Users/wok/PiRoot/var/log/lighttpd/access.log",
+		"/Users/wok/PiRoot/home/pi/downloads/lighttp/lighttpd-1.4.35/configure",
+		"/Users/wok/PiRoot/home/pi/downloads/lighttp/lighttpd-1.4.35/README",
+		"/Users/wok/www/wokker.de/backup/etc/lighttpd/conf-available/10-webdav.conf",
+		"/Users/wok/www/wokker.de/backup/etc/lighttpd/conf-available/05-auth.conf",
+		"/Volumes/webdavwok/test.txt",
+		"/Users/wok/www/donbosco-schule.net_buffer/00_verwaltung.txt",
+		"/Users/wok/PiRoot/var/www/asgvertretungwok/phpinfowok.php",
+		"/Users/wok/Library/Caches/com.binarynights.ForkLift2/#11/woktest.php",
+		"/Users/wok/PiRoot/home/pi/www/asgvertretung/hashes.txt",
+		"/Users/wok/PiRoot/var/www/index.html",
+		"/Users/wok/www/wokker.de/backup/etc/init.d/fail2ban",
+		"/Users/wok/_NO_BACKUP_nosync/DELME/delme2/040000008200E00074C5B7101A82E00800000000805A8BB03B07CD010000000000000000010000004B65D96FD8BC4BDCBF6FD1710CA19AEC.ics",
+		"/Users/wok/Library/Caches/com.binarynights.ForkLift2/#0/040000008200E00074C5B7101A82E00800000000805A8BB03B07CD010000000000000000010000004B65D96FD8BC4BDCBF6FD1710CA19AEC.ics",
+		"/Users/wok/_NO_BACKUP_nosync/DELME/FB0202C52B904AF5BCEBD006178E0B8000000000000000000000000000000000.ics",
+		"/Users/wok/_NO_BACKUP_nosync/DELME/0a406d89-980d-f14a-a4d7-61b4f2022043.ics",
+		"/Users/wok/PiRoot/home/pi/www/asgvertretung/asgtest.js",
+		"/Users/wok/PiRoot/home/pi/www/asgvertretung/asg_vertretung2.js",
+		"/Users/wok/PiRoot/var/www/linfowok/config.inc.php",
+		"/Users/wok/source/_js/WOKChat/server.js",
+		"/Users/wok/PiRoot/home/pi/www/WOKChat/lib/config/env/production.js",
+		"/Users/wok/PiRoot/home/pi/www/WOKChat/server.js",
+		"/Users/wok/PiRoot/home/pi/www/WOKChat/lib/config/express.js",
+		"/Users/wok/PiRoot/home/pi/www/WOKChat/lib/config/config.js",
+		"/Users/wok/PiRoot/home/pi/www/WOKChat/package.json",
+		"/Users/wok/source/_js/WOKChat/dist/package.json",
+		"/Users/wok/PiRoot/home/pi/www/WOKChatServer/bin/www",
+		"/Users/wok/PiRoot/home/pi/www/WOKChatServer/app.js",
+		"/Users/wok/PiRoot/home/pi/www/WOKChatServer/package.json",
+		"/Users/wok/www/wokker.de/backupPi.sh",
+		"/Users/wok/_IdeaProjects/_test/AngularTest/dist/index.html",
+		"/Users/wok/_IdeaProjects/_test/AngularTest/dist/styles/vendor.71c590b0.css",
+		"/Users/wok/MethodPark/Fachartikel/2014-04 MeVisLab (c't)/02 Artikel/crawlMevis.py",
+		"/Users/wok/PiRoot/home/pi/www/node-server.js",
+		"/Users/wok/PiRoot/var/www/onlinecal/caldavzap/config.js",
+		"/Users/wok/www/_ Schule WOK Mathe/ZUFALLAD.HTM",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/BaikalAdmin/Resources/Templates/User/Calendars.html",
+		"/Users/wok/PiRoot/var/www/baikal/vendor/composer/ClassLoader.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Baikal/Core/Tools.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Formal/Framework.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Formal/Form.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Formal/Element.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Flake/Framework.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Flake/config.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/BaikalAdmin/Framework.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/BaikalAdmin/config.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Frameworks/Baikal/Framework.php",
+		"/Users/wok/PiRoot/var/www/baikal/vendor/bin/vobjectvalidate.php",
+		"/Users/wok/PiRoot/var/www/baikal/admin/install/index.php",
+		"/Users/wok/PiRoot/var/www/baikal/vendor/autoload.php",
+		"/Users/wok/PiRoot/var/www/baikal/Specific/config.php",
+		"/Users/wok/PiRoot/var/www/baikal/Core/Distrib.php",
+		"/Users/wok/PiRoot/var/www/baikal/admin/index.php",
+		"/Users/wok/PiRoot/var/www/baikal/vendor/sabre/dav/tests/Sabre/DAVACL/PrincipalSearchPropertySetTest.php",
+		"/Users/wok/PiRoot/var/www/baikal/index.php",
+		"/Users/wok/PiRoot/var/www/baikal/card.php",
+		"/Users/wok/PiRoot/var/www/baikal/cal.php",
+		"/Users/wok/PiRoot/var/www/baikal/vendor/sabre/vobject/tests/phpunit.xml",
+		"/Users/wok/PiRoot/var/www/baikal/vendor/sabre/dav/tests/phpunit.xml",
+		"/Users/wok/PiRoot/var/www/baikal/phpinfo.php",
+		"/Users/wok/PiRoot/home/pi/bin/backup.sh",
+		"/Users/wok/node_modules/colors/package.json",
+		"/Users/wok/bin/pig",
+		"/Users/wok/RaspberryPiRoot/home/pi/www/node-server.js",
+		"/Users/wok/RaspberryPiRoot/etc/lighttpd/lighttpd.conf",
+		"/Users/wok/RaspberryPiRoot/etc/lighttpd/ssl/wokker.de/www_wokker_de.csr"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 105.0,
+		"where_history":
+		[
+			"/Users/wok/source/_js/WOKChat",
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"̈",
+			"Ö",
+			"Ä",
+			"ö",
+			"ü",
+			"ä",
+			".",
+			"*",
+			"\\.+ [0-9]*",
+			"media",
+			" ",
+			"[0-9a-zA-Z\\.-]+@[0-9a-zA-Z\\.-]+",
+			" ",
+			"[a-zA-Z\\.-]+@[a-zA-Z\\.-]+",
+			"^$",
+			"\", ",
+			" ",
+			"redi",
+			"\"mailto:.*?\"",
+			"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.(?:[A-Z]{2}|com|org|net|edu|gov|mil|\nbiz|info|mobi|name|aero|asia|jobs)",
+			"/Volumes/FRITZ.NAS/WD-Elements10B8-01/",
+			" ",
+			" - ",
+			".wav",
+			"EUR",
+			"\\s([A-Z][A-Z0-9][A-Z0-9]|[A-Z0-9][A-Z][A-Z0-9]|[A-Z0-9][A-Z0-9][A-Z])",
+			"EUR",
+			" ",
+			"\\s([A-Z][A-Z0-9][A-Z0-9]|[A-Z0-9][A-Z][A-Z0-9]|[A-Z0-9][A-Z0-9][A-Z])",
+			"EUR",
+			"\\s([A-Z][A-Z0-9][A-Z0-9]|[A-Z0-9][A-Z][A-Z0-9]|[A-Z0-9][A-Z0-9][A-Z])\\s",
+			"\\s",
+			"EUR",
+			"\\s([A-Z][A-Z0-9][A-Z0-9]|[A-Z0-9][A-Z][A-Z0-9]|[A-Z0-9][A-Z0-9][A-Z])\\s",
+			"([A-Z][A-Z0-9][A-Z0-9]|[A-Z0-9][A-Z][A-Z0-9]|[A-Z0-9][A-Z0-9][A-Z])",
+			"EUR",
+			"([A-Z][A-Z0-9][A-Z0-9]|[A-Z0-9][A-Z][A-Z0-9]|[A-Z0-9][A-Z0-9][A-Z])",
+			"[A-Z0-9]{3,3}",
+			"with-webdav-locks",
+			"webdav-locks",
+			"ssl",
+			"^$",
+			"merge",
+			"$routeProvider",
+			"connect-livereload",
+			"passw",
+			"calandar.",
+			"Back to users list",
+			"!"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Ö",
+			"Ä",
+			"ö",
+			"ü",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "simple-todos.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 166.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
