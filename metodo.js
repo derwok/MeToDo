@@ -50,6 +50,15 @@ if (Meteor.isClient) {
 
 
     //////////////////////////////////////////////////////////////
+    Template.body.rendered = function(){
+        var input = this.find('.main-entry')
+        if(input){
+            input.focus()
+        }
+    };
+
+
+    //////////////////////////////////////////////////////////////
     Template.body.events({
         "submit .new-task": function (event) {
             // This function is called when the new task form is submitted
