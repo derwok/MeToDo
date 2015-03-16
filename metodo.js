@@ -21,13 +21,16 @@ if (Meteor.isClient) {
         // },
 
         tasks: function () {
+            var searchcriteria = {};
             if (Session.get("hideCompleted")) {
-                // If hide completed is checked, filter tasks
-                return Tasks.find({checked: {$ne: true}}, {sort: [["prio","asc"],["createdAt","desc"]]});
-            } else {
-                // Otherwise, return all of the tasks
-                return Tasks.find({}, {sort: [["prio","asc"],["createdAt","desc"]]});
+                searchcriteria["checked"] = {$ne: true};
             }
+           if (Session.get("search-query")) {
+               var re = new RegExp(Session.get("search-query"),"i");
+               searchcriteria["orgText"] = {$regex: re};
+            }
+
+            return Tasks.find(searchcriteria, {sort: [["prio","asc"],["createdAt","desc"]]});
         },
 
         hideCompleted: function () {
@@ -65,6 +68,12 @@ if (Meteor.isClient) {
             console.log(event);
 
             var text = event.target.text.value;
+            if (text.substring(0, 1) === "?") { // do not add search strings
+                event.target.text.value = "";
+                Session.set("search-query", null);
+                return false;
+            }
+
             Meteor.call("addTask", text);       // async server & client (latency compensation)
 
             // Clear form
@@ -76,10 +85,23 @@ if (Meteor.isClient) {
 
         "change .switch input": function (event) {
             Session.set("hideCompleted", event.target.checked);
+        },
+
+        "keyup input.main-entry": function (event) {
+            var text = event.currentTarget.value;
+            if (event.keyCode == 27) {   // ESC
+                Session.set("search-query", null);
+                event.currentTarget.value = "";
+                return;
+            }
+            if (text.substring(0, 1) === "?") {
+                var search = text.substring(1, text.length);
+                Session.set("search-query", search);
+            }
+            else {
+                Session.set("search-query", null);
+            }
         }
-        // "change .hide-completed input": function (event) {
-        //   Session.set("hideCompleted", event.target.checked);
-        // }
     });  // Template.body.events
 
 
