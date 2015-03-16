@@ -113,11 +113,15 @@ Meteor.methods({
         var result = taskParsePrio(text);
         text = result.text;
         var prio = result.prio;
+        result = taskParseTags(text);
+        text = result.text;
+        var tags = result.tags;
 
         Tasks.insert({
             text: text,
             orgText: orgText,
             prio: prio,
+            tags: tags,
             createdAt: new Date(),
             owner: Meteor.userId(),
             username: Meteor.user().username
