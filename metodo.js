@@ -10,16 +10,6 @@ if (Meteor.isClient) {
 
     Template.body.helpers({
 
-        // tasks: [
-        //       { text: "This is task 1" },
-        //       { text: "This is task 2" },
-        //       { text: "This is task 3" }
-        //     ],
-
-        // tasks: function () {
-        //   return Tasks.find({}, {sort: [["createdAt", "desc"]]})
-        // },
-
         tasks: function () {
             var searchcriteria = {};
             if (Session.get("hideCompleted")) {
@@ -114,8 +104,44 @@ if (Meteor.isClient) {
 
         "click .delete": function () {
             Meteor.call("deleteTask", this._id);
+        },
+
+        "click .tasktext": function (evt, tmpl) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            Session.set("editing_task_with_id", this._id);
+            var edit = $('.edittask');
+            if (edit) {
+                edit.focus();
+            };
+        },
+
+        "keyup .edittask": function (evt, tmpl) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            if (evt.which === 13) {
+                var text = tmpl.find(".edittask").value;
+                Meteor.call("updateTask", this._id, text);
+                Session.set("editing_task_with_id", null);
+                var edit = $('.main-entry');
+                if (edit) {
+                    edit.focus();
+                };
+            }
+            if (evt.which === 27) {
+                Session.set("editing_task_with_id", null);
+                var edit = $('.main-entry');
+                if (edit) {
+                    edit.focus();
+                };
+            }
         }
+
     });  // Template.task.events
+
+    Template.task.editing_task = function () {
+        return Session.equals("editing_task_with_id", this._id);
+    }
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
@@ -149,6 +175,31 @@ Meteor.methods({
         var tags = result.tags;
 
         Tasks.insert({
+            text: text,
+            orgText: orgText,
+            prio: prio,
+            tags: tags,
+            createdAt: new Date(),
+            owner: Meteor.userId(),
+            username: Meteor.user().username
+        });
+    },
+
+    updateTask: function (id, text) {
+        // Make sure the user is logged in before inserting a task
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+
+        var orgText = text;                 // TODO: Code Duplicate with addTask !!!
+        var result = taskParsePrio(text);
+        text = result.text;
+        var prio = result.prio;
+        result = taskParseTags(text);
+        text = result.text;
+        var tags = result.tags;
+
+        Tasks.update(id, {
             text: text,
             orgText: orgText,
             prio: prio,

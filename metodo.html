@@ -23,7 +23,7 @@
 
 
   <form class="new-task" autocomplete="off">
-    <input type="text" name="text" class="main-entry" placeholder="New Tasks here, #Prio, @Tag, ? for search" />
+    <input type="text" name="text" class="main-entry" placeholder="New Tasks here #Prio @Tag (? for search)" />
   </form>
 
   <!-- OUTPUT -->
@@ -38,10 +38,13 @@
 
 <template name="task">
   <li class="{{#if checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
-
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-    <span class="text">{{text}} ({{prio}})</span><br>
-    <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+      <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+      {{#if editing_task}}
+          <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}" autofocus>
+      {{else}}
+          <span class="tasktext">{{text}} ({{prio}})</span><br>
+          <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+      {{/if}}
+      <button class="delete">&times;</button>
   </li>
 </template>
