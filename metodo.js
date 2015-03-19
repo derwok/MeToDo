@@ -95,7 +95,7 @@ if (Meteor.isClient) {
     });  // Template.body.events
 
 
-    //////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
     Template.task.helpers({
         triggerautofocus: function() {
             console.log("triggerautofocus");
