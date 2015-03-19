@@ -44,7 +44,7 @@ if (Meteor.isClient) {
 
     //////////////////////////////////////////////////////////////
     Template.body.rendered = function(){
-        var input = this.find('.main-entry')
+        var input = this.find('.main-entry');
         if(input){
             input.focus()
         }
@@ -96,6 +96,22 @@ if (Meteor.isClient) {
 
 
     //////////////////////////////////////////////////////////////
+    Template.task.helpers({
+        triggerautofocus: function() {
+            console.log("triggerautofocus");
+            var input = $('.edittask');
+            console.log(input);
+            if(input){
+                input.focus(true);
+                console.log(this._id);
+            }
+        } ,
+
+        editing_task: function () {
+            return Session.equals("editing_task_with_id", this._id);
+        }
+    });
+
     Template.task.events({
         "click .toggle-checked": function () {
             // Set the checked property to the opposite of its current value
@@ -138,10 +154,6 @@ if (Meteor.isClient) {
         }
 
     });  // Template.task.events
-
-    Template.task.editing_task = function () {
-        return Session.equals("editing_task_with_id", this._id);
-    }
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
