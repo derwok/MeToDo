@@ -1,0 +1,13 @@
+<template name="task">
+    <li class="{{#if checked}}checked{{/if}}">
+        <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+        {{#if editing_task}}
+            <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}">
+            {{triggerautofocus}} ??
+        {{else}}
+            <span class="tasktext">{{text}} ({{prio}})</span><br>
+            <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+        {{/if}}
+        <button class="delete">&times;</button>
+    </li>
+</template>
