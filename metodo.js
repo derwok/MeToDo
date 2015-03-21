@@ -30,13 +30,13 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
 
-        console.log("Schema update");
-        allTasks = Tasks.find({owner: this.userId});
-        console.log("Count: "+allTasks.count());
-        allTasks.forEach(function (task) {
-            console.log("Updated: "+task.text)
-            Tasks.update(task._id, {$set: {dateLastWrite: task.createdAt}});
-        });
+        //console.log("Schema update");
+        //allTasks = Tasks.find({owner: this.userId});
+        //console.log("Count: "+allTasks.count());
+        //allTasks.forEach(function (task) {
+        //    console.log("Updated: "+task.text)
+        //    Tasks.update(task._id, {$set: {dateLastWrite: task.createdAt}});
+        //});
 
         var orgText = text;
         var result = taskParsePrio(text);
