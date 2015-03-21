@@ -30,6 +30,14 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
 
+        //console.log("Schema update");
+        //allTasks = Tasks.find({owner: this.userId});
+        //console.log("Count: "+allTasks.count());
+        //allTasks.forEach(function (task) {
+        //    console.log("Updated: "+task.text)
+        //    Tasks.update(task._id, {$set: {dateLastWrite: task.createdAt}});
+        //});
+
         var orgText = text;
         var result = taskParsePrio(text);
         text = result.text;
@@ -37,13 +45,14 @@ Meteor.methods({
         result = taskParseTags(text);
         text = result.text;
         var tags = result.tags;
-
+        var currentDate = new Date();
         Tasks.insert({
             text: text,
             orgText: orgText,
             prio: prio,
             tags: tags,
-            createdAt: new Date(),
+            createdAt: currentDate,
+            dateLastWrite: currentDate,
             owner: Meteor.userId(),
             username: Meteor.user().username
         });
@@ -68,7 +77,7 @@ Meteor.methods({
             orgText: orgText,
             prio: prio,
             tags: tags,
-            createdAt: new Date(),
+            dateLastWrite: new Date(),
             owner: Meteor.userId(),
             username: Meteor.user().username
         });
@@ -79,7 +88,7 @@ Meteor.methods({
     },
 
     setChecked: function (taskId, setChecked) {
-        Tasks.update(taskId, {$set: {checked: setChecked}});
+        Tasks.update(taskId, {$set: {checked: setChecked,
+                                    dateLastWrite: new Date()}});
     }
 });
-

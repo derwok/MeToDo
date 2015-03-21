@@ -14,7 +14,10 @@ Template.mainbody.helpers({
             searchcriteria["orgText"] = {$regex: re};
         }
 
-        return Tasks.find(searchcriteria, {sort: [["prio","asc"],["createdAt","desc"]]});
+        return Tasks.find(searchcriteria, {sort: [
+                                                ["checked", "asc"],
+                                                ["prio","asc"],
+                                                ["dateLastWrite","desc"]]});
     },
 
     hideCompleted: function () {
