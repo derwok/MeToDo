@@ -5,7 +5,15 @@ Tasks = new Mongo.Collection("tasks");
 
 ////////// Client Code! /////////
 if (Meteor.isClient) {
-    Meteor.subscribe("tasks");
+    Meteor.subscribe("tasks", function() {
+        //console.log("Schema update");
+        //allTasks = Tasks.find({owner: this.userId});
+        //console.log("Count: "+allTasks.count());
+        //allTasks.forEach(function (task) {
+        //    console.log("Updated: "+task.text)
+        //    Tasks.update(task._id, {$set: {dateLastWrite: task.createdAt}});
+        //});
+    });
 
     Accounts.ui.config({
         passwordSignupFields: "USERNAME_ONLY"
@@ -29,14 +37,6 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
-
-        //console.log("Schema update");
-        //allTasks = Tasks.find({owner: this.userId});
-        //console.log("Count: "+allTasks.count());
-        //allTasks.forEach(function (task) {
-        //    console.log("Updated: "+task.text)
-        //    Tasks.update(task._id, {$set: {dateLastWrite: task.createdAt}});
-        //});
 
         var orgText = text;
         var result = taskParsePrio(text);
