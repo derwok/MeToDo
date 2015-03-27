@@ -5,24 +5,14 @@
             {{>loginButtons}}
         </header>
 
-        <!--   <label class="hide-completed">
-    <input type="checkbox" checked="{{hideCompleted}}" />
-    Erledigte verstecken
-  </label>
- -->
-        Hide Done
-        <label class="switch">
-            <input class="switch__input" type="checkbox" checked="{{hideCompleted}}" />
-            <div class="switch__toggle"></div>
-        </label>
-
+        <input type="checkbox" id="chkHideCompleted" checked="{{hideCompleted}}" />
+        <label for="chkHideCompleted">Hide Done</label>
 
         <form class="new-task" autocomplete="off">
             <input type="text" name="text" class="main-entry" placeholder="New Tasks here #Prio @Tag (? for search)" />
         </form>
 
         <!-- OUTPUT -->
-
         <ul>
             {{#each tasks}}
                 {{> task}}

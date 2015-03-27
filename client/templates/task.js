@@ -20,7 +20,7 @@ Template.task.events({
         Meteor.call("setChecked", this._id, !this.checked);  // async server & client (latency compensation)
     },
 
-    "click .delete": function () {
+    "click #btnDelete": function () {
         Meteor.call("deleteTask", this._id);
     },
 

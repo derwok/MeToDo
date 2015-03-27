@@ -70,7 +70,7 @@ Template.mainbody.events({
         return false;
     },
 
-    "change .switch input": function (event) {
+    "change #chkHideCompleted": function (event) {
         Session.set("hideCompleted", event.target.checked);
     },
 

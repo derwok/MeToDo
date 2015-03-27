@@ -1,14 +1,19 @@
 <template name="task">
     <li class="{{#if checked}}checked{{/if}}">
-        <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-        {{#if editing_task}}
-            <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}">
-            {{triggerautofocus}} ??
-        {{else}}
-            <span class="tasktext">{{text}} ({{prio}})</span><br>
-            <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
-            <!--<span>{{dateLastWrite}}</span>-->
-        {{/if}}
-        <button class="delete">&times;</button>
+        <!--<input type="checkbox" class="toggle-checked" checked="{{checked}}" />-->
+        <input type="checkbox" class="toggle-checked" checked="{{checked}}" id="{{_id}}"/>
+        <label for="{{_id}}">
+            {{#if editing_task}}
+                <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}">
+                {{triggerautofocus}} ??
+            {{else}}
+                <span class="tasktext">{{text}} ({{prio}})</span><br>
+                <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+                <!--<span>{{dateLastWrite}}</span>-->
+            {{/if}}
+        </label>
+
+        <a class="btn-floating waves-effect waves-light red delete" id="btnDelete"><i class="mdi-action-highlight-remove"></i></a>
+        <!--<button class="delete">&times;</button>-->
     </li>
 </template>
