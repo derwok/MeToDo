@@ -3,15 +3,15 @@
         <!--<input type="checkbox" class="toggle-checked" checked="{{checked}}" />-->
         <input type="checkbox" class="toggle-checked" checked="{{checked}}" id="{{_id}}"/>
         <label for="{{_id}}">
-            {{#if editing_task}}
-                <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}">
-                {{triggerautofocus}} ??
-            {{else}}
-                <span class="tasktext">{{text}} ({{prio}})</span><br>
-                <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
-                <!--<span>{{dateLastWrite}}</span>-->
-            {{/if}}
         </label>
+        {{#if editing_task}}
+            <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}">
+            {{triggerautofocus}}
+        {{else}}
+            <span class="tasktext">{{text}} ({{prio}})</span><br>
+            <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+            <!--<span>{{dateLastWrite}}</span>-->
+        {{/if}}
 
         <a class="btn-floating waves-effect waves-light red delete" id="btnDelete"><i class="mdi-action-highlight-remove"></i></a>
         <!--<button class="delete">&times;</button>-->
