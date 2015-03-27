@@ -95,7 +95,7 @@ li {
 li .tasktext {
   margin-left: 10px;
   cursor: pointer;
-  font-size: 140%;
+  font-size: 110%;
 }
 
 li.checked {
