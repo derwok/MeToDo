@@ -1,0 +1,22 @@
+<template name="home">
+    {{#if currentUser}}
+        {{> atNavButton}}
+        <div class="container">
+            <input type="checkbox" id="chkHideCompleted" checked="{{hideCompleted}}" />
+            <label for="chkHideCompleted">Hide Done</label>
+
+            <form class="new-task" autocomplete="off">
+                <input type="text" name="text" class="main-entry"
+                       placeholder="New Tasks here #Prio @Tag (? for search)" />
+            </form>
+
+            <ul>
+                {{#each tasks}}
+                    {{> task}}
+                {{/each}}
+            </ul>
+        </div>
+    {{else}}
+        {{> atForm}}
+    {{/if}}
+</template>

@@ -1,8 +1,8 @@
-Template.mainbody.created = function () {
+Template.home.created = function () {
     //add your statement here 
 };
 
-Template.mainbody.helpers({
+Template.home.helpers({
 
     tasks: function () {
         var searchcriteria = {};
@@ -40,7 +40,7 @@ Template.mainbody.helpers({
 
 
 //////////////////////////////////////////////////////////////
-Template.mainbody.rendered = function(){
+Template.home.rendered = function(){
     var input = this.find('.main-entry');
     if(input){
         input.focus()
@@ -49,7 +49,7 @@ Template.mainbody.rendered = function(){
 
 
 //////////////////////////////////////////////////////////////
-Template.mainbody.events({
+Template.home.events({
     "submit .new-task": function (event) {
         // This function is called when the new task form is submitted
         console.log(event);
