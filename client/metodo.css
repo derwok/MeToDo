@@ -61,38 +61,18 @@ ul {
   position: relative;
 }
 
-li {
-  position: relative;
-  list-style: none;
-  padding: 15px;
-  border-bottom: #eee solid 1px;
-}
-
-li .tasktext {
+td .tasktext {
   margin-left: 10px;
   cursor: pointer;
   font-size: 110%;
 }
 
-li.checked {
+.checked {
   color: #888;
 }
 
-li.checked .tasktext {
+.checked .tasktext {
   text-decoration: line-through;
-}
-
-li.private {
-  background: #eee;
-  border-color: #ddd;
-}
-
-header .hide-completed {
-  float: right;
-}
-
-.toggle-private {
-  margin-left: 5px;
 }
 
 

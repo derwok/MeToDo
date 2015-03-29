@@ -1,20 +1,21 @@
 <template name="home">
     {{#if currentUser}}
-        {{> atNavButton}}
-        <div class="container">
+        <div>
             <input type="checkbox" id="chkHideCompleted" checked="{{hideCompleted}}" />
             <label for="chkHideCompleted">Hide Done</label>
+            {{> atNavButton}}
+            <!--<a id="at-nav-button" class="waves-effect waves-light btn"><i class="mdi-action-exit-to-app"></i></a>-->
 
             <form class="new-task" autocomplete="off">
                 <input type="text" name="text" class="main-entry"
                        placeholder="New Tasks here #Prio @Tag (? for search)" />
             </form>
 
-            <ul>
+            <table>
                 {{#each tasks}}
                     {{> task}}
                 {{/each}}
-            </ul>
+            </table>
         </div>
     {{else}}
         {{> atForm}}
