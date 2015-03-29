@@ -1,12 +1,11 @@
 Template.task.helpers({
     triggerautofocus: function() {
-        console.log("triggerautofocus");
-        var input = $('.edittask');
-        console.log(input);
-        if(input){
-            input.focus(true);
-            console.log(this._id);
-        }
+        Meteor.defer(function () {  // wait for DOM update, then set focus on edit
+            var input = $('.edittask');
+            if (input) {
+                input.focus();
+            }
+        });
     } ,
 
     editing_task: function () {
