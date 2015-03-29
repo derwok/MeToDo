@@ -1,13 +1,11 @@
 
-
-
 body {
   font-family: Helvetica Neue, Verdana, Arial, sans-serif;
   font-size: 14px;
 }
 
 .container {
-  max-width: 600px;
+  /*max-width: 600px;*/
   margin: 0 auto;
   min-height: 100%;
   background: white;
@@ -46,12 +44,6 @@ form {
   outline: 0;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  background: white;
-}
-
 .delete {
   float: right;
   /*font-weight: bold;*/
@@ -78,10 +70,6 @@ td .tasktext {
 
 @media only screen
 and (max-width : 480px) {
-  li {
-    padding: 12px 15px;
-  }
-
   .search {
     width: auto;
     clear: both;

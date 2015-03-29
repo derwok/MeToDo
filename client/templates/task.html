@@ -1,25 +1,33 @@
 <template name="task">
     <tr>
-        <td>
-                <input type="checkbox" class="toggle-checked"
-                       checked="{{checked}}" id="{{_id}}"/>
-                <label for="{{_id}}"></label>
-        </td>
-        <td class="{{#if checked}}checked{{/if}}" style="width: 99%">
-            {{#if editing_task}}
-                <input class="edittask" type="text" style="width: 80%;" value="{{orgText}}">
-                {{triggerautofocus}}
-            {{else}}
-                <span class="tasktext">{{text}} ({{prio}})</span><br>
-                <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
-            {{/if}}
-        </td>
-        <td>
-                <a class="btn-floating waves-effect waves-light red delete"
-                   style="vertical-align: text-top"
-                   id="btnDelete">
-                    <i class="mdi-action-highlight-remove"></i>
-                </a>
-        </td>
+        {{#if editing_task}}
+            <td></td>
+            <td colspan="2" style="padding-top: 0px;">
+                <div class="card-panel" style="padding-top: 0px;">
+                    <span class="text-darken-2">
+                        <input class="edittask"
+                               type="text" value="{{orgText}}">
+                        {{triggerautofocus}}
+                    </span>
+                </div>
+            </td>
+        {{else}}
+            <td>
+                    <input type="checkbox" class="toggle-checked"
+                           checked="{{checked}}" id="{{_id}}"/>
+                    <label for="{{_id}}"></label>
+            </td>
+            <td class="{{#if checked}}checked{{/if}}" style="width: 99%">
+                    <span class="tasktext">{{text}} ({{prio}})</span><br>
+                    <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+            </td>
+            <td>
+                    <a class="btn-floating waves-effect waves-light red delete"
+                       style="vertical-align: text-top"
+                       id="btnDelete">
+                        <i class="mdi-action-highlight-remove"></i>
+                    </a>
+            </td>
+        {{/if}}
     </tr>
 </template>

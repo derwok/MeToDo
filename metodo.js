@@ -84,7 +84,9 @@ Meteor.methods({
     },
 
     deleteTask: function (taskId) {
-        Tasks.remove(taskId);
+        Meteor.defer(function () {
+            Tasks.remove(taskId);
+        });
     },
 
     setChecked: function (taskId, setChecked) {

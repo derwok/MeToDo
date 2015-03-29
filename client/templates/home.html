@@ -1,5 +1,6 @@
 <template name="home">
     {{#if currentUser}}
+        {{> nav}}
         <div>
             <input type="checkbox" id="chkHideCompleted" checked="{{hideCompleted}}" />
             <label for="chkHideCompleted">Hide Done</label>
@@ -11,10 +12,12 @@
                        placeholder="New Tasks here #Prio @Tag (? for search)" />
             </form>
 
-            <table>
+            <table class="hoverable">
+                <tbody>
                 {{#each tasks}}
                     {{> task}}
                 {{/each}}
+                </tbody>
             </table>
         </div>
     {{else}}
