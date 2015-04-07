@@ -39,22 +39,19 @@ Meteor.methods({
         }
 
         var orgText = text;
-        var result = taskParsePrio(text);
-        text = result.text;
-        var prio = result.prio;
-        result = taskParseTags(text);
-        text = result.text;
-        var tags = result.tags;
+        var result = taskParseAll(text);
         var currentDate = new Date();
         Tasks.insert({
-            text: text,
-            orgText: orgText,
-            prio: prio,
-            tags: tags,
-            createdAt: currentDate,
-            dateLastWrite: currentDate,
             owner: Meteor.userId(),
-            username: Meteor.user().username
+            username: Meteor.user().username,
+
+            orgText: orgText,
+            text: result.text,
+            prio: result.prio,
+            tags: result.tags,
+            star: result.star,
+            createdAt: currentDate,
+            dateLastWrite: currentDate
         });
     },
 
@@ -65,21 +62,18 @@ Meteor.methods({
         }
 
         var orgText = text;                 // TODO: Code Duplicate with addTask !!!
-        var result = taskParsePrio(text);
-        text = result.text;
-        var prio = result.prio;
-        result = taskParseTags(text);
-        text = result.text;
-        var tags = result.tags;
+        var result = taskParseAll(text);
 
         Tasks.update(id, {
-            text: text,
-            orgText: orgText,
-            prio: prio,
-            tags: tags,
-            dateLastWrite: new Date(),
             owner: Meteor.userId(),
-            username: Meteor.user().username
+            username: Meteor.user().username,
+
+            orgText: orgText,
+            text: result.text,
+            prio: result.prio,
+            tags: result.tags,
+            star: result.star,
+            dateLastWrite: new Date()
         });
     },
 
@@ -92,5 +86,21 @@ Meteor.methods({
     setChecked: function (taskId, setChecked) {
         Tasks.update(taskId, {$set: {checked: setChecked,
                                     dateLastWrite: new Date()}});
+    },
+
+    setStar: function (taskId, setStar) {
+        var task = Tasks.findOne(taskId);
+        if (task) {
+            var orgText = task.orgText;
+            if (setStar) {
+                orgText += " **";
+            } else {
+                orgText = orgText.replace(/\s*\*\*/, "");
+            }
+        }
+        Tasks.update(taskId, {$set: {star: setStar,
+            orgText: orgText,
+            dateLastWrite: new Date()}});
     }
+
 });

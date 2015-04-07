@@ -12,8 +12,8 @@ body {
 }
 
 .tags {
-    font-size: x-small;
-    color: gainsboro;
+    font-size: small;
+    color: darkgray;
 }
 
 h1 {
@@ -53,15 +53,30 @@ form {
   position: relative;
 }
 
+td {
+  padding: 5px;
+}
+
 td .tasktext {
-  margin-left: 10px;
+  font-size: 115%;
+}
+
+.editable {
   cursor: pointer;
-  font-size: 110%;
 }
 
 .checked {
   color: #888;
 }
+
+.starred {
+  color: orange;
+}
+
+.unstarred {
+  color: lightgrey;
+}
+
 
 .checked .tasktext {
   text-decoration: line-through;

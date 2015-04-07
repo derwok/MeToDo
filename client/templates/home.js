@@ -9,9 +9,37 @@ Template.home.helpers({
         if (Session.get("hideCompleted")) {
             searchcriteria["checked"] = {$ne: true};
         }
+
         if (Session.get("search-query")) {
-            var re = new RegExp(Session.get("search-query"),"i");
-            searchcriteria["orgText"] = {$regex: re};
+            var searchtext = Session.get("search-query");
+            var invertedByNOT = false;
+            if (searchtext.indexOf("!") == 0) {
+                invertedByNOT = true;
+                searchtext = searchtext.replace("!", "");
+            }
+
+            if (searchtext.indexOf(" ") >= 0) {  // space is interpreted as boolean $and
+                var fragmentsString = searchtext.split(/\s+/);
+                var fragmentsRegExp = [];
+                for (var i=0; i<fragmentsString.length; i++) {
+                    if (fragmentsString[i] != "") {
+                        var rex = new RegExp(fragmentsString[i],"i");
+                        if (invertedByNOT) {
+                            fragmentsRegExp.push({orgText: {$not: {$regex: rex}}});
+                        } else {
+                            fragmentsRegExp.push({orgText: {$regex: rex}});
+                        }
+                    }
+                }
+                searchcriteria = {$and: fragmentsRegExp};
+            } else {  // simple case - no boolean operator
+                var re = new RegExp(searchtext,"i");
+                if (invertedByNOT) {
+                    searchcriteria = {orgText: {$not: {$regex: re}}};
+                } else {
+                    searchcriteria = {orgText: {$regex: re}};
+                }
+            }
         }
 
         return Tasks.find(searchcriteria, {sort: [
@@ -83,6 +111,8 @@ Template.home.events({
         }
         if (text.substring(0, 1) === "?") {
             var search = text.substring(1, text.length);
+            // escape all regexp chars for literal search
+            search = search.replace(/[[-[\]{}()*+?.,\\^$|#]/g, "\\$&");    // all '*' to '\*'
             Session.set("search-query", search);
         }
         else {

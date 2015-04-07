@@ -2,7 +2,7 @@
     <tr>
         {{#if editing_task}}
             <td></td>
-            <td colspan="2" style="padding-top: 0px;">
+            <td colspan="3" style="padding-top: 0px;">
                 <div class="card-panel" style="padding-top: 0px;">
                     <span class="text-darken-2">
                         <input class="edittask"
@@ -13,13 +13,16 @@
             </td>
         {{else}}
             <td>
-                    <input type="checkbox" class="toggle-checked"
-                           checked="{{checked}}" id="{{_id}}"/>
+                    <input type="checkbox" class="toggle-checked" checked="{{checked}}" id="{{_id}}"/>
                     <label for="{{_id}}"></label>
             </td>
+            <td>
+                <i class="small mdi-action-stars toggle-star {{#unless star}}un{{/unless}}starred" id="{{_id}}"></i>
+            </td>
             <td class="{{#if checked}}checked{{/if}}" style="width: 99%">
-                    <span class="tasktext">{{text}} ({{prio}})</span><br>
-                    <span class="tags">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tags}}</span>
+                    <span class="tasktext {{#unless checked}}editable{{/unless}}">
+                        {{text}} ({{prio}})</span><br>
+                    <span class="tags">{{tags}}{{#if checked}} {{dateLastWriteISO}}{{/if}}</span>
             </td>
             <td>
                     <a class="btn-floating waves-effect waves-light red delete"

@@ -10,7 +10,13 @@ Template.task.helpers({
 
     editing_task: function () {
         return Session.equals("editing_task_with_id", this._id);
+    },
+
+    dateLastWriteISO: function () {
+        var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        return (new Date(this.dateLastWrite - tzoffset)).toISOString().slice(0,-5).replace("T", " ");
     }
+
 });
 
 Template.task.events({
@@ -19,6 +25,11 @@ Template.task.events({
         Meteor.call("setChecked", this._id, !this.checked);  // async server & client (latency compensation)
     },
 
+    "click .toggle-star": function () {
+        Meteor.call("setStar", this._id, !this.star);  // async server & client (latency compensation)
+    },
+
+
     "click #btnDelete": function () {
         Meteor.call("deleteTask", this._id);
     },
@@ -26,11 +37,9 @@ Template.task.events({
     "click .tasktext": function (evt, tmpl) {
         evt.stopPropagation();
         evt.preventDefault();
-        Session.set("editing_task_with_id", this._id);
-        var edit = $('.edittask');
-        if (edit) {
-            edit.focus();
-        };
+        if (! this.checked) {
+            Session.set("editing_task_with_id", this._id);
+        }
     },
 
     "keyup .edittask": function (evt, tmpl) {
