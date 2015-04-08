@@ -29,10 +29,10 @@ if (Meteor.isServer) {
     });
 
      // *** database migration hook ***
-    var tasks = Tasks.find().forEach(function(task){
-        console.log("Task:"+task.text);
-        Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
-    });
+    //var tasks = Tasks.find().forEach(function(task){
+    //    console.log("Task:"+task.text);
+    //    Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
+    //});
 }
 
 
