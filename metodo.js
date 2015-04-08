@@ -27,12 +27,19 @@ if (Meteor.isServer) {
     Meteor.publish("tasks", function () {
         return Tasks.find({owner: this.userId});
     });
+
+     // *** database migration hook ***
+    var tasks = Tasks.find().forEach(function(task){
+        console.log("Task:"+task.text);
+        Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
+    });
 }
 
 
 ////////// Client & Server Code! /////////
 Meteor.methods({
     addTask: function (text) {
+        console.log("Meteor.methods.addTask");
         // Make sure the user is logged in before inserting a task
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
@@ -56,6 +63,7 @@ Meteor.methods({
     },
 
     updateTask: function (id, text) {
+        console.log("Meteor.methods.updateTask");
         // Make sure the user is logged in before inserting a task
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
@@ -78,17 +86,20 @@ Meteor.methods({
     },
 
     deleteTask: function (taskId) {
+        console.log("Meteor.methods.deleteTask");
         Meteor.defer(function () {
             Tasks.remove(taskId);
         });
     },
 
     setChecked: function (taskId, setChecked) {
+        console.log("Meteor.methods.setChecked");
         Tasks.update(taskId, {$set: {checked: setChecked,
                                     dateLastWrite: new Date()}});
     },
 
     setStar: function (taskId, setStar) {
+        console.log("Meteor.methods.setStar");
         var task = Tasks.findOne(taskId);
         if (task) {
             var orgText = task.orgText;

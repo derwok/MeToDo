@@ -17,7 +17,10 @@
                     <label for="{{_id}}"></label>
             </td>
             <td>
-                <i class="small mdi-action-stars toggle-star {{#unless star}}un{{/unless}}starred" id="{{_id}}"></i>
+                <a class="toggle-star waves-effect {{#if star}}waves-gray{{else}}waves-orange{{/if}} btn-flat btn-floating"
+                   id="{{_id}}">
+                    <i class="mdi-action-star-rate {{#if star}}orange-text{{else}}grey-text text-lighten-1{{/if}}"></i>
+                </a>
             </td>
             <td class="{{#if checked}}checked{{/if}}" style="width: 99%">
                     <span class="tasktext {{#unless checked}}editable{{/unless}}">
