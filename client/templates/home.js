@@ -6,9 +6,6 @@ Template.home.helpers({
 
     tasks: function () {
         var searchcriteria = {};
-        if (Session.get("hideCompleted")) {
-            searchcriteria["checked"] = {$ne: true};
-        }
 
         if (Session.get("search-query")) {
             var searchtext = Session.get("search-query");
@@ -42,27 +39,19 @@ Template.home.helpers({
             }
         }
 
+        if (Session.get("hideCompleted")) {
+            searchcriteria["checked"] = {$ne: true};
+        }
+
         return Tasks.find(searchcriteria, {sort: [
                                                 ["checked", "asc"],
+                                                ["star", "desc"],
                                                 ["prio","asc"],
                                                 ["dateLastWrite","desc"]]});
     },
 
     hideCompleted: function () {
         return Session.get("hideCompleted");
-    },
-
-    incompleteCount: function () {
-        return Tasks.find({checked: {$ne: true}}).count();
-    },
-
-    usernameUpperPlusS: function () {
-        if (!Meteor.user().username || Meteor.user().username.length < 3) {
-            return "";
-        }
-        else {
-            return Meteor.user().username.toUpperCase() + "s ";
-        }
     }
 });
 
