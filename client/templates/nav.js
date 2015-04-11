@@ -5,7 +5,9 @@ Template.nav.onRendered(function () {
 
 
 Template.nav.helpers({
-    //add you helpers here
+    userID: function () {
+        return Meteor.userId();
+    }
 });
 
 Template.nav.events({
