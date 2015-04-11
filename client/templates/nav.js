@@ -1,7 +1,7 @@
 
-Template.nav.rendered = function () {
+Template.nav.onRendered(function () {
     $(".button-collapse").sideNav();
-};
+});
 
 
 Template.nav.helpers({
@@ -9,5 +9,8 @@ Template.nav.helpers({
 });
 
 Template.nav.events({
-    //add your events here
+    "click #mnuTaskExport": function () {
+        var t2 = Tasks.find().fetch();
+        console.log("Tasks:"+JSON.stringify(t2));
+    }
 });

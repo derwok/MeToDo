@@ -1,6 +1,10 @@
-Template.home.created = function () {
-    //add your statement here 
-};
+Template.home.onCreated (function () {
+});
+
+Template.home.onRendered(function(){
+});
+
+
 
 Template.home.helpers({
 
@@ -55,14 +59,6 @@ Template.home.helpers({
     }
 });
 
-
-//////////////////////////////////////////////////////////////
-Template.home.rendered = function(){
-    var input = this.find('.main-entry');
-    if(input){
-        input.focus()
-    }
-};
 
 
 //////////////////////////////////////////////////////////////

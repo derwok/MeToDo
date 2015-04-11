@@ -92,6 +92,22 @@ Meteor.methods({
         });
     },
 
+    removeAllTasks: function () {
+        console.log("Meteor.methods.removeAllTasks");
+        Tasks.remove({});
+    },
+
+    insertTaskObject: function (taskObject) {
+        console.log("Meteor.methods.insertTaskObject");
+
+        taskObject["owner"] = Meteor.userId();
+        taskObject["username"] = Meteor.user().username;
+        taskObject["dateLastWrite"] = new Date(taskObject["dateLastWrite"]);
+        taskObject["createdAt"] = new Date (taskObject["createdAt"]);
+
+        Tasks.insert(taskObject);
+    },
+
     setChecked: function (taskId, setChecked) {
         console.log("Meteor.methods.setChecked");
         Tasks.update(taskId, {$set: {checked: setChecked,
