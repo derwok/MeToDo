@@ -1,10 +1,7 @@
 Template.exportimport.onRendered(function () {
     Meteor.defer(function () {
-        var t2 = Tasks.find().fetch();
-        console.log("Tasks:"+t2.length);
-        var textarea = $('#id_jsoninout');
+        var textarea = $('#id_jsonin');
         if (textarea) {
-            textarea.val(JSON.stringify(t2));
             textarea.select();
             textarea.focus();
         }
@@ -17,7 +14,7 @@ Template.exportimport.helpers({
 
 Template.exportimport.events({
     "click #id_btnImport": function () {
-        var tasksjson = $('#id_jsoninout').val();
+        var tasksjson = $('#id_jsonin').val();
         if (tasksjson.length === 0) {
             console.log("No JSON");
             return;

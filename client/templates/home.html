@@ -11,13 +11,15 @@
                        placeholder="New Task #Prio @Tag ** (? for search)" />
             </form>
 
-            <table class="hoverable">
-                <tbody>
-                {{#each tasks}}
-                    {{> task}}
-                {{/each}}
-                </tbody>
-            </table>
+            {{#unless privacyMode}}
+                <table class="hoverable">
+                    <tbody>
+                    {{#each tasks}}
+                        {{> task}}
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/unless}}
         </div>
     {{else}}
         {{> atForm}}

@@ -10,3 +10,4 @@ accounts-ui
 accounts-password
 materialize:materialize
 useraccounts:materialize
+mrt:jquery-hotkeys

@@ -4,6 +4,10 @@ body {
   font-size: 14px;
 }
 
+html {
+  overflow-y: scroll; /* Avoid 'jumping' during scrollbar show/hide */
+}
+
 .container {
   /*max-width: 600px;*/
   margin: 0 auto;
@@ -77,6 +81,11 @@ td .tasktext {
   text-decoration: line-through;
 }
 
+
+.mnuHighlighted {
+  font-weight: 600;
+  color: darkorange !important;
+}
 
 @media only screen
 and (max-width : 480px) {

@@ -56,7 +56,12 @@ Template.home.helpers({
 
     hideCompleted: function () {
         return Session.get("hideCompleted");
+    },
+
+    privacyMode: function () {
+        return Session.get("privacyMode");
     }
+
 });
 
 
@@ -94,6 +99,11 @@ Template.home.events({
             event.currentTarget.value = "";
             return;
         }
+        if (event.keyCode == 112) {   // F1
+            togglePrivacyMode();
+            return;
+        }
+
         if (text.substring(0, 1) === "?") {
             var search = text.substring(1, text.length);
             // escape all regexp chars for literal search
