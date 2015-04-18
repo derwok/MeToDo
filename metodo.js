@@ -19,6 +19,7 @@ if (Meteor.isClient) {
         passwordSignupFields: "USERNAME_ONLY"
     });
 
+    Session.set("setting.showCompleted", false);
 }  // Meteor.isClient
 
 

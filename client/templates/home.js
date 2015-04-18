@@ -43,7 +43,7 @@ Template.home.helpers({
             }
         }
 
-        if (Session.get("hideCompleted")) {
+        if (! Session.get('setting.showCompleted')) {
             searchcriteria["checked"] = {$ne: true};
         }
 
@@ -54,14 +54,13 @@ Template.home.helpers({
                                                 ["dateLastWrite","desc"]]});
     },
 
-    hideCompleted: function () {
-        return Session.get("hideCompleted");
-    },
-
     privacyMode: function () {
         return Session.get("privacyMode");
-    }
+    },
 
+    searchMode: function () {
+        return Session.get("search-query");
+    }
 });
 
 
@@ -75,7 +74,6 @@ Template.home.events({
         var text = event.target.text.value;
         if (text.substring(0, 1) === "?") { // do not add search strings
             event.target.text.value = "";
-            Session.set("search-query", null);
             return false;
         }
 
@@ -88,15 +86,13 @@ Template.home.events({
         return false;
     },
 
-    "change #chkHideCompleted": function (event) {
-        Session.set("hideCompleted", event.target.checked);
-    },
-
     "keyup input.main-entry": function (event) {
         var text = event.currentTarget.value;
         if (event.keyCode == 27) {   // ESC
-            Session.set("search-query", null);
             event.currentTarget.value = "";
+            if (text.substring(0, 1) === "?") {     // End current search by ESC
+                Session.set("search-query", null);
+            }
             return;
         }
         if (event.keyCode == 112) {   // F1
@@ -110,8 +106,13 @@ Template.home.events({
             search = search.replace(/[[-[\]{}()*+?.,\\^$|#]/g, "\\$&");    // all '*' to '\*'
             Session.set("search-query", search);
         }
-        else {
+    },
+
+    "click #btnSearchMenu": function () {
+        if (Session.get("search-query")) {      // start new search filter
             Session.set("search-query", null);
+        } else {                                // end search filter
+            $('.main-entry').val('?').focus();
         }
     }
 });  // Template.mainbody.events

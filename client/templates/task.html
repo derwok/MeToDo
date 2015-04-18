@@ -12,11 +12,13 @@
                 </div>
             </td>
         {{else}}
-            <td>
+            <td style="vertical-align: top">
+                <div class="task-checkbox">
                     <input type="checkbox" class="toggle-checked" checked="{{checked}}" id="{{_id}}"/>
                     <label for="{{_id}}"></label>
+                </div>
             </td>
-            <td>
+            <td style="vertical-align: top">
                 <a class="toggle-star waves-effect {{#if star}}waves-gray{{else}}waves-orange{{/if}} btn-flat btn-floating"
                    id="{{_id}}">
                     <i class="mdi-action-star-rate {{#if star}}orange-text{{else}}grey-text text-lighten-1{{/if}}"></i>
@@ -25,11 +27,10 @@
             <td class="{{#if checked}}checked{{/if}}" style="width: 99%">
                     <span class="tasktext {{#unless checked}}editable{{/unless}}">
                         {{text}} ({{prio}})</span><br>
-                    <span class="tags">{{tags}}{{#if checked}} {{dateLastWriteISO}}{{/if}}</span>
+                    <span class="tags">{{tags}}&nbsp;{{#if checked}}{{dateLastWriteISO}}{{/if}}</span>
             </td>
-            <td>
+            <td style="vertical-align: top">
                     <a class="btn-floating waves-effect waves-light red delete"
-                       style="vertical-align: text-top"
                        id="btnDelete">
                         <i class="mdi-action-highlight-remove"></i>
                     </a>

@@ -1,6 +1,9 @@
 
 Template.nav.onRendered(function () {
-    $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+        closeOnClick: true
+    });
+
     $(document).on('keydown', null, 'f1', function () {
         togglePrivacyMode();
     });
@@ -14,17 +17,37 @@ Template.nav.helpers({
 
     privacyMode: function () {
         return Session.get("privacyMode");
+    },
+
+    showCompleted: function () {
+        return Session.get("setting.showCompleted");
     }
+
+
 });
 
 Template.nav.events({
     "click #mnuTaskExport": function () {
+        event.preventDefault();
         var t2 = Tasks.find().fetch();
         console.log("Tasks:"+JSON.stringify(t2));
     },
 
+    "click #mnuShowCompleted": function () {
+        event.preventDefault();
+        Session.set('setting.showCompleted', !Session.get('setting.showCompleted'));
+    },
+
     "click #mnuPrivacyMode": function () {
+        event.preventDefault();
         togglePrivacyMode();
+    },
+
+    "click #mnuSignOut": function () {
+        event.preventDefault();
+        if (Meteor.userId()) {
+            AccountsTemplates.logout();
+        }
     }
 });
 

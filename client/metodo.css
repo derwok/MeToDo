@@ -37,10 +37,13 @@ form {
 .new-task input {
   border: 2px solid;
   border-radius: 25px;
-  padding: 10px;
-  margin: 10px;
-  background:  transparent;
-  width: 90%;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  /*background:  transparent;*/
+  /*width: 90%;*/
   font-size: 1.3em;
 }
 
@@ -73,6 +76,12 @@ td .tasktext {
   color: #888;
 }
 
+.task-checkbox {
+  position: relative;
+  top: +8px;
+  LEFT:10px;
+}
+
 .toggle-star {
   cursor: pointer;
 }
@@ -81,11 +90,6 @@ td .tasktext {
   text-decoration: line-through;
 }
 
-
-.mnuHighlighted {
-  font-weight: 600;
-  color: darkorange !important;
-}
 
 @media only screen
 and (max-width : 480px) {

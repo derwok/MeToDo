@@ -1,15 +1,17 @@
 <template name="home">
     {{#if currentUser}}
-        {{> nav}}
-        <div>
-            <input type="checkbox" id="chkHideCompleted" checked="{{hideCompleted}}" />
-            <label for="chkHideCompleted">Hide Done</label>
-            {{> atNavButton}}
-
+        <div class="row">
+        <div class="col s11">
             <form class="new-task" autocomplete="off">
                 <input type="text" name="text" class="main-entry"
                        placeholder="New Task #Prio @Tag ** (? for search)" />
             </form>
+        </div>
+        <div class="col s1">
+            <a href="#" id="btnSearchMenu">
+                <i class="mdi-content-filter-list medium {{#if searchMode}} teal-text {{else}}blue-grey-text text-lighten-3{{/if}}"></i>
+            </a>
+        </div>
 
             {{#unless privacyMode}}
                 <table class="hoverable">

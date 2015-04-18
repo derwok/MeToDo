@@ -1,18 +1,61 @@
 <template name="nav">
-    <nav>
-        <div class="nav-wrapper teal darken-1">
-            <a href="#!" class="brand-logo">Me.Todo</a>
+    <nav class="teal darken-1">
+        <div class="nav-wrapper container teal darken-1">
+
+            <a href="#!" class="brand-logo">&nbsp;Me.Todo</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/exportimport">Import</a></li>
-                <li><a href="/api/tasks/{{userID}}">JSON</a></li>
-                <li class="{{#if privacyMode}}mnuHighlighted{{/if}}"><a href="#" id="mnuPrivacyMode">Privacy!</a></li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="/exportimport">Import</a></li>
-                <li><a href="/api/tasks/{{userID}}">JSON</a></li>
-                <li class="{{#if privacyMode}}mnuHighlighted{{/if}}"><a href="#" id="mnuPrivacyMode">Privacy!</a></li>
-            </ul>
+            {{#if currentUser}}
+
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#" id="mnuShowCompleted">
+                        {{#if showCompleted}}
+                            <i class="mdi-toggle-check-box"></i>
+                        {{else}}
+                            <i class="mdi-toggle-check-box-outline-blank"></i>
+                        {{/if}}
+                    </a></li>
+
+                    <li><a href="#" id="mnuPrivacyMode">
+                        {{#if privacyMode}}
+                            <i class="mdi-action-lock"></i>
+                        {{else}}
+                            <i class="mdi-action-lock-open"></i>
+                        {{/if}}
+                    </a></li>
+                    <li><a href="/exportimport"><i class="mdi-file-file-upload"></i></a></li>
+                    <li><a href="/api/tasks/{{userID}}"><i class="mdi-file-file-download"></i></a></li>
+                    <li><a href="#" id="mnuSignOut"><i class="mdi-action-exit-to-app"></i></a></li>
+                </ul>
+                {{/if}}
+                <ul class="side-nav" id="mobile-demo">
+                    <li class="teal">Me.Todo</li>
+                    <li><a href="#" id="mnuShowCompleted">
+                        {{#if showCompleted}}
+                            <i class="mdi-toggle-check-box"></i> Hide Completed
+                        {{else}}
+                            <i class="mdi-toggle-check-box-outline-blank"></i> Show Completed
+                        {{/if}}
+                    </a></li>
+                    <li>
+                        <a href="#" id="mnuPrivacyMode">
+                            {{#if privacyMode}}
+                                <i class="mdi-action-lock"></i>
+                            {{else}}
+                                <i class="mdi-action-lock-open"></i>
+                            {{/if}}
+                                Privacy (F1)</a></li>
+                    <li>
+                        <a href="/exportimport"><i class="mdi-file-file-upload"></i> JSON Upload</a></li>
+                    <li>
+                        <a href="/api/tasks/{{userID}}"><i class="mdi-file-file-download"></i> JSON Download</a></li>
+                    <li>
+                        <a href="#" id="mnuSignOut"><i class="mdi-action-exit-to-app"></i> Sign Out</a></li>
+                </ul>
         </div>
     </nav>
+    <br>
 </template>
+
+<!--JSON: mdi-file-cloud-download-->
+<!--Import: mdi-file-file-upload-->
+<!--Privacy: mdi-action-lock-outline-->
