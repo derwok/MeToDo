@@ -27,24 +27,24 @@ Template.nav.helpers({
 });
 
 Template.nav.events({
-    "click #mnuTaskExport": function () {
-        event.preventDefault();
+    "click #mnuTaskExport": function (evt, tmpl) {
+        evt.preventDefault();
         var t2 = Tasks.find().fetch();
         console.log("Tasks:"+JSON.stringify(t2));
     },
 
-    "click #mnuShowCompleted": function () {
-        event.preventDefault();
+    "click #mnuShowCompleted": function (evt, tmpl) {
+        evt.preventDefault();
         Session.set('setting.showCompleted', !Session.get('setting.showCompleted'));
     },
 
-    "click #mnuPrivacyMode": function () {
-        event.preventDefault();
+    "click #mnuPrivacyMode": function (evt, tmpl) {
+        evt.preventDefault();
         togglePrivacyMode();
     },
 
-    "click #mnuSignOut": function () {
-        event.preventDefault();
+    "click #mnuSignOut": function (evt, tmpl) {
+        evt.preventDefault();
         if (Meteor.userId()) {
             AccountsTemplates.logout();
         }
