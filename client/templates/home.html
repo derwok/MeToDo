@@ -16,9 +16,14 @@
             <div class="col s12">
                 <table class="hoverable">
                     <tbody>
-                    {{#each tasks}}
+                    {{#each tasks false}}
                         {{> task}}
                     {{/each}}
+                    {{#if showCompleted}}
+                        {{#each tasks true}}
+                            {{> task}}
+                        {{/each}}
+                    {{/if}}
                     </tbody>
                 </table>
             </div>

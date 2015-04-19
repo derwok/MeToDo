@@ -8,8 +8,9 @@ Template.home.onRendered(function(){
 
 Template.home.helpers({
 
-    tasks: function () {
+    tasks: function (onlyCompletedTasks) {
         var searchcriteria = {};
+        var sortcriteria = {};
 
         if (Session.get("search-query")) {
             var searchtext = Session.get("search-query");
@@ -43,15 +44,21 @@ Template.home.helpers({
             }
         }
 
-        if (! Session.get('setting.showCompleted')) {
+        // sort & search according to the task block we render
+        // 1st: unchecked (tobedone) tasks - always
+        // 2nd: checked (done) tasks - optional!
+        if (onlyCompletedTasks) {
+            searchcriteria["checked"] = {$gt: false};       // {$eq: true} => Error: Unrecognized operator: $eq
+            sortcriteria = {sort: [["dateLastWrite","desc"]]};
+        } else {
             searchcriteria["checked"] = {$ne: true};
+            sortcriteria = {sort: [
+                                    ["star", "desc"],
+                                    ["prio","asc"],
+                                    ["dateLastWrite","desc"]]};
         }
 
-        return Tasks.find(searchcriteria, {sort: [
-                                                ["checked", "asc"],
-                                                ["star", "desc"],
-                                                ["prio","asc"],
-                                                ["dateLastWrite","desc"]]});
+        return Tasks.find(searchcriteria, sortcriteria);
     },
 
     privacyMode: function () {
@@ -60,6 +67,10 @@ Template.home.helpers({
 
     searchMode: function () {
         return Session.get("search-query");
+    },
+
+    showCompleted: function () {
+        return Session.get('setting.showCompleted');
     }
 });
 
