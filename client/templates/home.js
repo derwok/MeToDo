@@ -61,6 +61,10 @@ Template.home.helpers({
         return Tasks.find(searchcriteria, sortcriteria);
     },
 
+    searches: function () {
+        return Searches.find({}, {sort: [["dateLastWrite","desc"]], limit: DEFAULT_MAX_SEARCHHISTORY_LENGTH});
+    },
+
     privacyMode: function () {
         return Session.get("privacyMode");
     },
@@ -71,7 +75,23 @@ Template.home.helpers({
 
     showCompleted: function () {
         return Session.get('setting.showCompleted');
+    },
+
+    activateDrop: function () {
+        Meteor.defer(function () {
+            $('.dropdown-button').dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                hover: false, // Activate only on click
+                gutter: -60, // Spacing from edge
+                belowOrigin: true // Displays dropdown below the button
+            });
+        });
+
     }
+
+
 });
 
 
@@ -80,11 +100,12 @@ Template.home.helpers({
 Template.home.events({
     "submit .new-task": function (event) {
         // This function is called when the new task form is submitted
-        console.log(event);
 
         var text = event.target.text.value;
         if (text.substring(0, 1) === "?") { // do not add search strings
             event.target.text.value = "";
+            var searchtext = "?"+Session.get("search-query");
+            Meteor.call("addSearch", searchtext);       // async server & client (latency compensation)
             return false;
         }
 
@@ -119,11 +140,21 @@ Template.home.events({
         }
     },
 
-    "click #btnSearchMenu": function () {
-        if (Session.get("search-query")) {      // start new search filter
-            Session.set("search-query", null);
-        } else {                                // end search filter
-            $('.main-entry').val('?').focus();
+    "click #mnuSearchSearch": function () {
+        var mainEntry = $('.main-entry');
+        if (mainEntry) {
+            mainEntry.val('?').focus();
+        }
+    },
+
+    "click #mnuSearchClear": function () {
+        Session.set("search-query", null);
+        var mainEntry = $('.main-entry');
+        if (mainEntry) {
+            if (mainEntry.val() == '?') {
+                mainEntry.val('');
+            }
+            mainEntry.focus();
         }
     }
 });  // Template.mainbody.events
