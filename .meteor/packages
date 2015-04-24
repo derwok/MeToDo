@@ -8,6 +8,6 @@ meteor-platform
 insecure
 accounts-ui
 accounts-password
-materialize:materialize
 useraccounts:materialize
 mrt:jquery-hotkeys
+materialize:materialize@=0.95.3
