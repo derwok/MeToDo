@@ -28,7 +28,7 @@ if (Meteor.isServer) {
         return Searches.find({owner: this.userId});
     });
 
-    Searches.remove({});
+    // Searches.remove({});
      // *** database/schema migration hook ***
     //var tasks = Tasks.find().forEach(function(task){
     //    console.log("Task:"+task.text);
