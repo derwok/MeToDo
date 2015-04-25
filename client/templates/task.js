@@ -4,6 +4,8 @@ Template.task.helpers({
             var input = $('.edittask');
             if (input) {
                 input.focus();
+                var strLength= input.val().length * 2;
+                input[0].setSelectionRange(strLength, strLength);
             }
         });
     } ,

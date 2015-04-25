@@ -30,25 +30,48 @@
                     <li class="teal">Me.Todo</li>
                     <li><a href="#" id="mnuShowCompleted">
                         {{#if showCompleted}}
-                            <i class="mdi-toggle-check-box"></i> Hide Completed
+                            Hide Completed
                         {{else}}
-                            <i class="mdi-toggle-check-box-outline-blank"></i> Show Completed
+                            Show Completed
                         {{/if}}
                     </a></li>
                     <li>
                         <a href="#" id="mnuPrivacyMode">
                             {{#if privacyMode}}
-                                <i class="mdi-action-lock"></i>
+                                Privacy Off (F1)
                             {{else}}
-                                <i class="mdi-action-lock-open"></i>
+                                Privacy On (F1)
                             {{/if}}
-                                Privacy (F1)</a></li>
+                            </a></li>
                     <li>
-                        <a href="/exportimport"><i class="mdi-file-file-upload"></i> JSON Upload</a></li>
+                        <a href="/exportimport">JSON Upload</a></li>
                     <li>
-                        <a href="/api/tasks/{{userID}}"><i class="mdi-file-file-download"></i> JSON Download</a></li>
+                        <a href="/api/tasks/{{userID}}">JSON Download</a></li>
                     <li>
-                        <a href="#" id="mnuSignOut"><i class="mdi-action-exit-to-app"></i> Sign Out</a></li>
+                        <a href="#" id="mnuSignOut">Sign Out</a></li>
+
+
+                    <!--<li><a href="#" id="mnuShowCompleted">-->
+                        <!--{{#if showCompleted}}-->
+                            <!--<i class="mdi-toggle-check-box"></i> Hide Completed-->
+                        <!--{{else}}-->
+                            <!--<i class="mdi-toggle-check-box-outline-blank"></i> Show Completed-->
+                        <!--{{/if}}-->
+                    <!--</a></li>-->
+                    <!--<li>-->
+                        <!--<a href="#" id="mnuPrivacyMode">-->
+                            <!--{{#if privacyMode}}-->
+                                <!--<i class="mdi-action-lock"></i>-->
+                            <!--{{else}}-->
+                                <!--<i class="mdi-action-lock-open"></i>-->
+                            <!--{{/if}}-->
+                                <!--Privacy (F1)</a></li>-->
+                    <!--<li>-->
+                        <!--<a href="/exportimport"><i class="mdi-file-file-upload"></i> JSON Upload</a></li>-->
+                    <!--<li>-->
+                        <!--<a href="/api/tasks/{{userID}}"><i class="mdi-file-file-download"></i> JSON Download</a></li>-->
+                    <!--<li>-->
+                        <!--<a href="#" id="mnuSignOut"><i class="mdi-action-exit-to-app"></i> Sign Out</a></li>-->
                 </ul>
         </div>
     </nav>

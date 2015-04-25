@@ -11,7 +11,7 @@ Template.searchhistory.events({
             if (mainEntry.val() == '?') {
                 mainEntry.val('');
             }
-            mainEntry.focus();
         }
+        Session.set("privacyMode", false);
     }
 });

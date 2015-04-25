@@ -84,7 +84,7 @@ Template.home.helpers({
                 outDuration: 225,
                 constrain_width: false, // Does not change width of dropdown to that of the activator
                 hover: false, // Activate only on click
-                gutter: -60, // Spacing from edge
+                gutter: 0, // Spacing from edge
                 belowOrigin: true // Displays dropdown below the button
             });
         });
@@ -127,7 +127,7 @@ Template.home.events({
             }
             return;
         }
-        if (event.keyCode == 112) {   // F1
+        if (event.keyCode == 112 && event.altKey) {   // Alt+F1
             togglePrivacyMode();
             return;
         }
@@ -140,21 +140,26 @@ Template.home.events({
         }
     },
 
-    "click #mnuSearchSearch": function () {
+    "click #mnuSearchSearch": function (evt, tmpl) {
+        console.log("home click #mnuSearchSearch");
         var mainEntry = $('.main-entry');
         if (mainEntry) {
             mainEntry.val('?').focus();
+            mainEntry[0].setSelectionRange(4, 4);
         }
+        Session.set("privacyMode", false);
     },
 
-    "click #mnuSearchClear": function () {
+    "click #mnuSearchClear": function (evt, tmpl) {
+        console.log("home click #mnuSearchClear");
         Session.set("search-query", null);
+        Session.set("privacyMode", false);
         var mainEntry = $('.main-entry');
         if (mainEntry) {
             if (mainEntry.val() == '?') {
                 mainEntry.val('');
             }
-            mainEntry.focus();
         }
     }
+
 });  // Template.mainbody.events

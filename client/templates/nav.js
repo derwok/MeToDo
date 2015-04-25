@@ -4,7 +4,8 @@ Template.nav.onRendered(function () {
         closeOnClick: true
     });
 
-    $(document).on('keydown', null, 'f1', function () {
+    //
+    $(document).on('keydown', null, 'Alt+f1', function () {
         togglePrivacyMode();
     });
 });

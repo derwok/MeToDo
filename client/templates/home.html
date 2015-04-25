@@ -1,32 +1,29 @@
 <template name="home">
     {{#if currentUser}}
+        <!-- Search Dropdown Menu -->
+        <ul id='id_searchHistory' class='dropdown-content teal lighten-4' style="z-index: 9999;">
+            {{#if searchMode}}<li><a href='#' id="mnuSearchClear">Clear</a></li>{{/if}}
+            <li><a href='#' id="mnuSearchSearch">Search</a></li>
+            <li class="divider"></li>
+            {{#each searches}}
+                {{> searchhistory}}
+            {{/each}}
+        </ul>
+
+
         <div class="row">
+            <div class="col s1">
+                <a class='dropdown-button' href='#' id="btnSearch" data-activates='id_searchHistory' activate-drop="{{activateDrop}}">
+                    <i class="mdi-action-search medium {{#if searchMode}} teal-text {{else}}blue-grey-text text-lighten-3{{/if}}"></i>
+                </a>
+            </div>
+
             <div class="col s11">
                 <form class="new-task" autocomplete="off">
                     <input type="text" name="text" class="main-entry"
                            placeholder="New Task #Prio @Tag ** (? for search)" />
                 </form>
             </div>
-            <div class="col s1">
-
-                <a class='dropdown-button' href='#' data-activates='id_searchHistory' activate-drop="{{activateDrop}}">
-                    <i class="mdi-action-search medium {{#if searchMode}} teal-text {{else}}blue-grey-text text-lighten-3{{/if}}"></i>
-                </a>
-                <!-- Search Dropdown Menu -->
-                <ul id='id_searchHistory' class='dropdown-content teal lighten-4' style="z-index: 9999;">
-                    {{#if searchMode}}<li><a href="#!" id="mnuSearchClear">Clear</a></li>{{/if}}
-                    <li><a href="#!" id="mnuSearchSearch">Search</a></li>
-                    <li class="divider"></li>
-                    {{#each searches}}
-                        {{> searchhistory}}
-                     {{/each}}
-                </ul>
-
-                <!--<a href="#" id="btnSearchMenu">-->
-                    <!--<i class="mdi-content-filter-list medium {{#if searchMode}} teal-text {{else}}blue-grey-text text-lighten-3{{/if}}"></i>-->
-                <!--</a>-->
-            </div>
-
             {{#unless privacyMode}}
             <div class="col s12">
                 <table class="hoverable">

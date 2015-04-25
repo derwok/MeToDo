@@ -10,4 +10,4 @@ accounts-ui
 accounts-password
 useraccounts:materialize
 mrt:jquery-hotkeys
-materialize:materialize@=0.95.3
+materialize:materialize
