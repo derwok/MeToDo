@@ -14,10 +14,12 @@ Template.home.helpers({
 
         if (Session.get("search-query")) {
             var searchtext = Session.get("search-query");
+            searchcriteria = searchParseAll(searchtext);
+/*
             var invertedByNOT = false;
             if (searchtext.indexOf("!") == 0) {
                 invertedByNOT = true;
-                searchtext = searchtext.replace("!", "");
+                searchtext = searchtext.replace(/^!/, "");
             }
 
             if (searchtext.indexOf(" ") >= 0) {  // space is interpreted as boolean $and
@@ -42,8 +44,8 @@ Template.home.helpers({
                     searchcriteria = {orgText: {$regex: re}};
                 }
             }
+ */
         }
-
         // sort & search according to the task block we render
         // 1st: unchecked (tobedone) tasks - always
         // 2nd: checked (done) tasks - optional!
@@ -134,8 +136,6 @@ Template.home.events({
 
         if (text.substring(0, 1) === "?") {
             var search = text.substring(1, text.length);
-            // escape all regexp chars for literal search
-            search = search.replace(/[[-[\]{}()*+?.,\\^$|#]/g, "\\$&");    // all '*' to '\*'
             Session.set("search-query", search);
         }
     },

@@ -2,8 +2,8 @@
     {{#if currentUser}}
         <!-- Search Dropdown Menu -->
         <ul id='id_searchHistory' class='dropdown-content teal lighten-4' style="z-index: 9999;">
-            {{#if searchMode}}<li><a href='#' id="mnuSearchClear">Clear</a></li>{{/if}}
-            <li><a href='#' id="mnuSearchSearch">Search</a></li>
+            {{#if searchMode}}<li><a href='#' id="mnuSearchClear"><b>Clear</b></a></li>{{/if}}
+            <li><a href='#' id="mnuSearchSearch"><b>Search</b></a></li>
             <li class="divider"></li>
             {{#each searches}}
                 {{> searchhistory}}

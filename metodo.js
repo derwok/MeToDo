@@ -156,6 +156,13 @@ Meteor.methods({
             Searches.remove({_id: {$nin: searchIDs}});
             console.log("Number of searches after clean up: "+Searches.find().count());
         }
+    },
+
+    deleteSearch: function (searchId) {
+        console.log("Meteor.methods.deleteSearch");
+        Meteor.defer(function () {
+            Searches.remove(searchId);
+        });
     }
 });
 

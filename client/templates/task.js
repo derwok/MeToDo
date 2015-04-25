@@ -32,7 +32,7 @@ Template.task.events({
     },
 
 
-    "click #btnDelete": function () {
+    "click #btnDeleteTask": function () {
         Meteor.call("deleteTask", this._id);
     },
 
