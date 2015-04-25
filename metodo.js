@@ -88,14 +88,20 @@ Meteor.methods({
 
     deleteTask: function (taskId) {
         console.log("Meteor.methods.deleteTask");
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
         Meteor.defer(function () {
             Tasks.remove(taskId);
         });
     },
 
-    removeAllTasks: function () {
+    removeAllTasksOfUser: function () {
         console.log("Meteor.methods.removeAllTasks");
-        Tasks.remove({});
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+        Tasks.remove({owner: Meteor.userId()});
     },
 
     insertTaskObject: function (taskObject) {

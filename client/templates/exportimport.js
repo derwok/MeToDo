@@ -26,7 +26,7 @@ Template.exportimport.events({
         }
 
         if (confirm("Do you really want to delete all tasks and import new ones?")) {
-            Meteor.call("removeAllTasks");
+            Meteor.call("removeAllTasksOfUser");
             if(Tasks.find().count() === 0) {
                 for (var i=0; i<tasksarray.length; i++) {
                     var taskObj = tasksarray[i];
