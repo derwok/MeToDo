@@ -91,6 +91,17 @@ td .tasktext {
 }
 
 
+.dateActive {
+  color: green !important;
+  font-weight: bold;
+}
+
+.dateHot {
+  color: red !important;
+  font-weight: bold;
+}
+
+
 @media only screen
 and (max-width : 480px) {
   .search {

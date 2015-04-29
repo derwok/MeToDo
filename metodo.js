@@ -58,6 +58,8 @@ Meteor.methods({
             prio: result.prio,
             tags: result.tags,
             star: result.star,
+            startDate: result.startDate,
+            dueDate: result.dueDate,
             createdAt: currentDate,
             dateLastWrite: currentDate
         });
@@ -82,6 +84,8 @@ Meteor.methods({
             prio: result.prio,
             tags: result.tags,
             star: result.star,
+            startDate: result.startDate,
+            dueDate: result.dueDate,
             dateLastWrite: new Date()
         });
     },

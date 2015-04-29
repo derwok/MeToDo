@@ -15,36 +15,6 @@ Template.home.helpers({
         if (Session.get("search-query")) {
             var searchtext = Session.get("search-query");
             searchcriteria = searchParseAll(searchtext);
-/*
-            var invertedByNOT = false;
-            if (searchtext.indexOf("!") == 0) {
-                invertedByNOT = true;
-                searchtext = searchtext.replace(/^!/, "");
-            }
-
-            if (searchtext.indexOf(" ") >= 0) {  // space is interpreted as boolean $and
-                var fragmentsString = searchtext.split(/\s+/);
-                var fragmentsRegExp = [];
-                for (var i=0; i<fragmentsString.length; i++) {
-                    if (fragmentsString[i] != "") {
-                        var rex = new RegExp(fragmentsString[i],"i");
-                        if (invertedByNOT) {
-                            fragmentsRegExp.push({orgText: {$not: {$regex: rex}}});
-                        } else {
-                            fragmentsRegExp.push({orgText: {$regex: rex}});
-                        }
-                    }
-                }
-                searchcriteria = {$and: fragmentsRegExp};
-            } else {  // simple case - no boolean operator
-                var re = new RegExp(searchtext,"i");
-                if (invertedByNOT) {
-                    searchcriteria = {orgText: {$not: {$regex: re}}};
-                } else {
-                    searchcriteria = {orgText: {$regex: re}};
-                }
-            }
- */
         }
         // sort & search according to the task block we render
         // 1st: unchecked (tobedone) tasks - always

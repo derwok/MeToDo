@@ -27,7 +27,10 @@
             <td class="{{#if checked}}checked{{/if}}" style="width: 99%">
                     <span class="tasktext {{#unless checked}}editable{{/unless}}">
                         {{text}} ({{prio}})</span><br>
-                    <span class="tags">{{tags}}&nbsp;{{#if checked}}{{dateLastWriteISO}}{{/if}}</span>
+                    <span class="tags">{{tags}}&nbsp;
+                        {{#if checked}}{{dateLastWriteISO}}{{/if}}</span>
+                    {{#unless checked}}<span class="tags {{colorClassForDates}}">{{startDateDueDateISO}}
+                    </span>{{/unless}}
             </td>
             <td style="vertical-align: top">
                     <a class="btn-floating waves-effect waves-light red delete"

@@ -17,8 +17,36 @@ Template.task.helpers({
     dateLastWriteISO: function () {
         var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
         return (new Date(this.dateLastWrite - tzoffset)).toISOString().slice(0,-5).replace("T", " ");
-    }
+    },
 
+    startDateDueDateISO: function () {
+        var dates = "";
+        var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        if (this.startDate) {
+            dates += ">"+(new Date(this.startDate - tzoffset)).toISOString().slice(0,-14);
+        }
+        if (this.dueDate) {
+            if (dates.length > 0) {
+                dates += " "
+            }
+            dates += "<"+(new Date(this.dueDate - tzoffset)).toISOString().slice(0,-14);
+        }
+        return dates;
+    },
+
+    colorClassForDates: function () {
+        var colorclass = "";
+        var dateNow = new Date();
+        if (this.startDate && this.startDate <= dateNow) {
+            console.log("ACTIVE: "+this.startDate+" <= " +dateNow);
+            colorclass = "dateActive";
+        }
+        if (this.dueDate && this.dueDate <= dateNow) {
+            console.log("HOT: "+this.dueDate+" <= " +dateNow);
+            colorclass = "dateHot";
+        }
+        return colorclass;
+    }
 });
 
 Template.task.events({
