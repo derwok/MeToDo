@@ -24,6 +24,20 @@ Template.home.helpers({
             sortcriteria = {sort: [["dateLastWrite","desc"]]};
         } else {
             searchcriteria["checked"] = {$ne: true};
+
+            // Unless we want to "Show All"
+            if (! Session.get('setting.showCompleted')) {
+                // we only want to see tasks with either
+                // * no startDate or
+                // * a startDate in the past
+                searchcriteria = {$and: [searchcriteria,
+                                        {$or: [{startDate: {$exists : false} },
+                                               {startDate: {$lte: new Date()}}
+                                              ]
+                                        }]
+                                 };
+            }
+
             sortcriteria = {sort: [
                                     ["star", "desc"],
                                     ["prio","asc"],
