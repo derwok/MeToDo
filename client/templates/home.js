@@ -28,10 +28,12 @@ Template.home.helpers({
             // Unless we want to "Show All"
             if (! Session.get('setting.showCompleted')) {
                 // we only want to see tasks with either
-                // * no startDate or
+                // * non existing startDate attribute or
+                // * startDate == null
                 // * a startDate in the past
                 searchcriteria = {$and: [searchcriteria,
                                         {$or: [{startDate: {$exists : false} },
+                                               {startDate: null },
                                                {startDate: {$lte: new Date()}}
                                               ]
                                         }]
