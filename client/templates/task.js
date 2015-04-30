@@ -38,13 +38,17 @@ Template.task.helpers({
         var colorclass = "";
         var dateNow = new Date();
         if (this.startDate && this.startDate <= dateNow) {
-            console.log("ACTIVE: "+this.startDate+" <= " +dateNow);
             colorclass = "dateActive";
         }
-        if (this.dueDate && this.dueDate <= dateNow) {
-            console.log("HOT: "+this.dueDate+" <= " +dateNow);
+        var dateHotZone = new Date();
+        dateHotZone.setDate(dateHotZone.getDate() + DEFAULT_HOT_ZONE_IN_DAYS);
+        if (this.dueDate && this.dueDate <= dateHotZone) {
             colorclass = "dateHot";
         }
+        if (this.dueDate && this.dueDate <= dateNow) {
+            colorclass = "dateHottest";
+        }
+
         return colorclass;
     }
 });

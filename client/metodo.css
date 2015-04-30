@@ -96,13 +96,18 @@ span.dateActive {
   font-weight: bold;
 }
 
-span.dateHot {
+span.dateHottest {
   color: red !important;
   font-weight: bold;
 }
 
 tr.dateHot {
-  background-color: lightpink !important;
+  background-color: lightgoldenrodyellow !important;
+}
+
+
+tr.dateHottest {
+  background-color: #FFDDDD !important;
 }
 
 

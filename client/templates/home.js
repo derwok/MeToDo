@@ -8,7 +8,7 @@ Template.home.onRendered(function(){
 
 Template.home.helpers({
 
-    tasks: function (onlyCompletedTasks) {
+    tasks: function (taskBlockName) {
         var searchcriteria = {};
         var sortcriteria = {};
 
@@ -19,11 +19,36 @@ Template.home.helpers({
         // sort & search according to the task block we render
         // 1st: unchecked (tobedone) tasks - always
         // 2nd: checked (done) tasks - optional!
-        if (onlyCompletedTasks) {
+        if (taskBlockName == "COMPLETED_TASKS") {
             searchcriteria["checked"] = true;
             sortcriteria = {sort: [["dateLastWrite","desc"]]};
         } else {
             searchcriteria["checked"] = {$ne: true};
+
+            var hotTaskFilter = {};
+            var hotZone = new Date();
+            hotZone.setDate(hotZone.getDate() + DEFAULT_HOT_ZONE_IN_DAYS);
+
+            if (taskBlockName == "HOT_TASKS") {
+                searchcriteria = {$and: [searchcriteria,
+                                        {$and: [{dueDate: {$exists : true } },
+                                                {dueDate: {$ne: null} },
+                                                {dueDate: {$lte: hotZone} }
+                                               ]
+                                        }]
+                                 };
+            }
+
+            if (taskBlockName == "NORMAL_TASKS") {
+                searchcriteria = {$and: [searchcriteria,
+                                        {$or: [{dueDate: {$exists : false } },
+                                                {dueDate: null },
+                                                {dueDate: {$gt: hotZone} }
+                                               ]
+                                        }]
+                                 };
+            }
+
 
             // Unless we want to "Show All"
             if (! Session.get('setting.showCompleted')) {
