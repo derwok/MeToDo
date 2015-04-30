@@ -20,7 +20,7 @@ Template.home.helpers({
         // 1st: unchecked (tobedone) tasks - always
         // 2nd: checked (done) tasks - optional!
         if (onlyCompletedTasks) {
-            searchcriteria["checked"] = {$gt: false};       // {$eq: true} => Error: Unrecognized operator: $eq
+            searchcriteria["checked"] = true;
             sortcriteria = {sort: [["dateLastWrite","desc"]]};
         } else {
             searchcriteria["checked"] = {$ne: true};
