@@ -17,38 +17,40 @@ Template.home.helpers({
             searchcriteria = searchParseAll(searchtext);
         }
         // sort & search according to the task block we render
-        // 1st: unchecked (tobedone) tasks - always
-        // 2nd: checked (done) tasks - optional!
+        // 1st: STARRED tasks - always
+        // 2nd: HOT TASKS - always
+        // 3rd: NORMAL TASKS - always
+        // 4th: checked (done) tasks - optional!
         if (taskBlockName == "COMPLETED_TASKS") {
             searchcriteria["checked"] = true;
             sortcriteria = {sort: [["dateLastWrite","desc"]]};
-        } else {
-            searchcriteria["checked"] = false;
+        } else {  // STARRED, HOT & NORMAL
+            searchcriteria["checked"] = {$ne: true};
 
-            var hotZone = new Date();
-            hotZone.setDate(hotZone.getDate() + DEFAULT_HOT_ZONE_IN_DAYS);
+            var hotDateZone = new Date();  // To find tasks that are due the next NN days
+            hotDateZone.setDate(hotDateZone.getDate() + DEFAULT_HOT_ZONE_IN_DAYS);
 
-            if (taskBlockName == "STARRED_TASKS") {
+            if (taskBlockName == "STARRED_TASKS") {  // star always above everything!
                 searchcriteria["star"] = true;
             }
 
             if (taskBlockName == "HOT_TASKS") {
-                //searchcriteria["star"] = false;
+                searchcriteria["star"] = false;     // no stars below STARRED block
                 searchcriteria = {$and: [searchcriteria,
-                                        {$and: [{dueDate: {$exists : true } },
+                                        {$and: [{dueDate: {$exists : true } },     // find hot tasks
                                                 {dueDate: {$ne: null} },
-                                                {dueDate: {$lte: hotZone} }
+                                                {dueDate: {$lte: hotDateZone} }
                                                ]
                                         }]
                                  };
             }
 
             if (taskBlockName == "NORMAL_TASKS") {
-                searchcriteria["star"] = false;
+                searchcriteria["star"] = false;     // no stars below STARRED block
                 searchcriteria = {$and: [searchcriteria,
-                                        {$or: [{dueDate: {$exists : false } },
+                                        {$or: [{dueDate: {$exists : false } },  // skip hot tasks
                                                 {dueDate: null },
-                                                {dueDate: {$gt: hotZone} }
+                                                {dueDate: {$gt: hotDateZone} }
                                                ]
                                         }]
                                  };
@@ -57,7 +59,8 @@ Template.home.helpers({
 
             // Unless we want to "Show All"
             if (! Session.get('setting.showCompleted')) {
-                // we only want to see tasks with either
+                // Hide tasks with future start date.
+                // So, we only want to see tasks with either
                 // * non existing startDate attribute or
                 // * startDate == null
                 // * a startDate in the past
