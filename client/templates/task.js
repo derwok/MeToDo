@@ -69,6 +69,12 @@ Template.task.events({
         }
     },
 
+    "click #id_btnCloseEditTasktext": function () {
+        if (Session.get("editing_task_with_id")) {
+            Session.set("editing_task_with_id", null);
+        }
+    },
+
     "click .btnEditDetails": function () {
         if (Session.get("editing_task_with_id")) {
             return;

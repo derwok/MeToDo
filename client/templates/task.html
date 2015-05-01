@@ -4,13 +4,17 @@
             <td></td>
             <td></td>
             <td colspan="3" style="padding-top: 0px;">
-                <div class="card-panel" style="padding-top: 0px;">
+                <div class="card-panel" style="padding-top: 0px; position: relative;">
                     <span class="text-darken-2">
                         <input class="edittask"
                                type="text" value="{{orgText}}">
                         {{triggerautofocus}}
                     </span>
+                    <div class="toprightcorner" style="z-index: 9999;">
+                        <a href="#" style="color: grey;" id="id_btnCloseEditTasktext"><i class="mdi-navigation-cancel"></i></a>
+                    </div>
                 </div>
+
             </td>
 
 

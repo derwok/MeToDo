@@ -113,6 +113,11 @@ tr.dateHottest {
   background-color: #b2dfdb !important;
 }
 
+.toprightcorner{
+  position:absolute;
+  top: 3px;
+  right: 5px;
+}
 
 @media only screen
 and (max-width : 480px) {
