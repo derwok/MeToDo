@@ -14,6 +14,10 @@ Template.task.helpers({
         return Session.equals("editing_task_with_id", this._id);
     },
 
+    editing_taskdetails: function () {
+        return Session.equals("editing_taskdetails_with_id", this._id);
+    },
+
     dateLastWriteISO: function () {
         var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
         return (new Date(this.dateLastWrite - tzoffset)).toISOString().slice(0,-5).replace("T", " ");
@@ -60,9 +64,34 @@ Template.task.events({
     },
 
     "click .toggle-star": function () {
-        Meteor.call("setStar", this._id, !this.star);  // async server & client (latency compensation)
+        if (! this.checked) {
+            Meteor.call("setStar", this._id, !this.star);  // async server & client (latency compensation)
+        }
     },
 
+    "click .btnEditDetails": function () {
+        if (Session.get("editing_task_with_id")) {
+            return;
+        }
+
+        // Do we have to save some details?
+        if (Session.get("editing_taskdetails_with_id")) {
+            var notes = $('#id_edittaskdetails');
+            var task = Tasks.findOne(Session.get("editing_taskdetails_with_id"));
+            if (notes && task) {
+                notestext =  notes.val();
+                if (task.notes != notestext) {
+                    Meteor.call("updateTaskNotes", Session.get("editing_taskdetails_with_id"), notestext);
+                }
+            }
+        }
+
+        if (Session.equals("editing_taskdetails_with_id", this._id)) {
+            Session.set("editing_taskdetails_with_id", null);   // close this one
+        } else {
+            Session.set("editing_taskdetails_with_id", this._id);  // open this one
+        }
+    },
 
     "click #btnDeleteTask": function () {
         Meteor.call("deleteTask", this._id);
@@ -71,6 +100,10 @@ Template.task.events({
     "click .tasktext": function (evt, tmpl) {
         evt.stopPropagation();
         evt.preventDefault();
+        if (Session.get("editing_taskdetails_with_id")) {
+            return;
+        }
+
         if (! this.checked) {
             Session.set("editing_task_with_id", this._id);
         }

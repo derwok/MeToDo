@@ -61,7 +61,10 @@ form {
 }
 
 td {
-  padding: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 td .tasktext {
@@ -102,12 +105,12 @@ span.dateHottest {
 }
 
 tr.dateHot {
-  background-color: lightgoldenrodyellow !important;
+  background-color: #e0f2f1 !important;
 }
 
 
 tr.dateHottest {
-  background-color: #FFDDDD !important;
+  background-color: #b2dfdb !important;
 }
 
 

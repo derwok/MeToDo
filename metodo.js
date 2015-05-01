@@ -75,7 +75,7 @@ Meteor.methods({
         var orgText = text;                 // TODO: Code Duplicate with addTask !!!
         var result = taskParseAll(text);
 
-        Tasks.update(id, {
+        Tasks.update(id, {$set: {
             owner: Meteor.userId(),
             username: Meteor.user().username,
 
@@ -87,7 +87,25 @@ Meteor.methods({
             startDate: result.startDate,
             dueDate: result.dueDate,
             dateLastWrite: new Date()
-        });
+        }});
+    },
+
+    updateTaskNotes: function (id, notestext) {
+        console.log("Meteor.methods.updateTaskNotes");
+        // Make sure the user is logged in before inserting a task
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+
+        if (!notestext) {
+            notestext = "";
+        }
+        console.log("id:"+id+" notes:"+notestext);
+        Tasks.update(id, {$set: {
+            notes: notestext,
+            hasDetails: (notestext.length > 0),     // true/false depending on notes length
+            dateLastWrite: new Date()
+        }});
     },
 
     deleteTask: function (taskId) {
