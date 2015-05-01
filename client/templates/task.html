@@ -1,5 +1,5 @@
 <template name="task">
-    <tr class="{{colorClassForDates}}">
+    <tr class="{{#unless checked}}{{colorClassForDates}}{{/unless}}">
         {{#if editing_task}}
             <td></td>
             <td colspan="3" style="padding-top: 0px;">
