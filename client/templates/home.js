@@ -23,13 +23,17 @@ Template.home.helpers({
             searchcriteria["checked"] = true;
             sortcriteria = {sort: [["dateLastWrite","desc"]]};
         } else {
-            searchcriteria["checked"] = {$ne: true};
+            searchcriteria["checked"] = false;
 
-            var hotTaskFilter = {};
             var hotZone = new Date();
             hotZone.setDate(hotZone.getDate() + DEFAULT_HOT_ZONE_IN_DAYS);
 
+            if (taskBlockName == "STARRED_TASKS") {
+                searchcriteria["star"] = true;
+            }
+
             if (taskBlockName == "HOT_TASKS") {
+                //searchcriteria["star"] = false;
                 searchcriteria = {$and: [searchcriteria,
                                         {$and: [{dueDate: {$exists : true } },
                                                 {dueDate: {$ne: null} },
@@ -40,6 +44,7 @@ Template.home.helpers({
             }
 
             if (taskBlockName == "NORMAL_TASKS") {
+                searchcriteria["star"] = false;
                 searchcriteria = {$and: [searchcriteria,
                                         {$or: [{dueDate: {$exists : false } },
                                                 {dueDate: null },
@@ -66,7 +71,6 @@ Template.home.helpers({
             }
 
             sortcriteria = {sort: [
-                                    ["star", "desc"],
                                     ["prio","asc"],
                                     ["dateLastWrite","desc"]]};
         }

@@ -28,13 +28,20 @@
             <div class="col s12">
                 <table class="hoverable">
                     <tbody>
+                    <tr><td>---STARRED---</td></tr>
+                    {{#each tasks "STARRED_TASKS"}}
+                        {{> task}}
+                    {{/each}}
+                    <tr><td>---HOT---</td></tr>
                     {{#each tasks "HOT_TASKS"}}
                         {{> task}}
                     {{/each}}
+                    <tr><td>---NORMAL---</td></tr>
                     {{#each tasks "NORMAL_TASKS"}}
                         {{> task}}
                     {{/each}}
                     {{#if showCompleted}}
+                        <tr><td>---CMPL---</td></tr>
                         {{#each tasks "COMPLETED_TASKS"}}
                             {{> task}}
                         {{/each}}
