@@ -115,8 +115,16 @@ tr.dateHottest {
 
 .toprightcorner{
   position:absolute;
-  top: 3px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
+}
+
+a.closetopright {
+  color: grey;
+  padding: 5px;
+}
+a.closetopright:hover {
+  color: red;
 }
 
 @media only screen
