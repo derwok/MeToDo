@@ -1,25 +1,15 @@
-[{"_id":"J7SK8dMLynkQe6Nj9","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Jetzt Prio niedrig #9","text":"Jetzt Prio niedrig","prio":9,"tags":[],"star":false,"createdAt":"2015-04-25T10:35:14.867Z","dateLastWrite":"2015-04-25T10:35:14.867Z"},
-
-  {"_id":"KDJijdmsL3ZTjZ5Zn","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Prio hoch #1 **","text":"Prio hoch","prio":1,"tags":[],"star":true,"createdAt":"2015-04-25T10:35:19.747Z","dateLastWrite":"2015-04-25T10:35:24.580Z"},
-
-  {"_id":"bNJFLw6ndc9ga3yrZ","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Blubb @home","text":"Blubb","prio":0,"tags":["@home"],"star":false,"createdAt":"2015-04-25T10:34:37.154Z","dateLastWrite":"2015-04-25T12:08:23.925Z","checked":true},
-
-  {"_id":"QeMo3jptYRrqZXCxW","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Bla @work #2","text":"Bla","prio":2,"tags":["@work"],"star":false,"dateLastWrite":"2015-04-25T13:34:52.479Z","checked":true},
-
-  {"_id":"buQgsBnNgfgHqmqBi","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Todo mit sub kontext @pc","text":"Todo mit sub kontext","prio":0,"tags":["@pc"],"star":false,"dateLastWrite":"2015-04-25T15:16:05.382Z"},
-
-  {"_id":"EC2YrkYyGAAH9WD4L","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"WOK war da @home","text":"WOK war da","prio":0,"tags":["@home"],"star":false,"createdAt":"2015-04-25T15:45:17.237Z","dateLastWrite":"2015-04-25T15:45:17.237Z"},
-
-  {"_id":"C2NDrTPYvi9tozRAL","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Ohne Kontext","text":"Ohne Kontext","prio":0,"tags":[],"star":false,"createdAt":"2015-04-25T15:45:32.637Z","dateLastWrite":"2015-04-25T15:45:36.455Z","checked":true},
-
-  {"_id":"cNwZWhcYZtSnSPZXk","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Starred at home @home **","text":"Starred at home","prio":0,"tags":["@home"],"star":true,"dateLastWrite":"2015-04-25T13:05:15.031Z"},
-
-  {"_id":"DSJWE9AszBZWNCZxM","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Work Job @work","text":"Work Job","prio":0,"tags":["@work"],"star":false,"createdAt":"2015-04-25T10:34:52.182Z","dateLastWrite":"2015-04-25T10:34:52.182Z"},
-
-  {"_id":"AtxSukhB2aqPNLu8t","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Ein Task ohne Kontext","text":"Ein Task ohne Kontext","prio":0,"tags":[],"star":false,"createdAt":"2015-04-25T10:35:09.111Z","dateLastWrite":"2015-04-25T10:35:09.111Z"},
-
-  {"_id":"JRjLAb9ck33mz5uZC","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Ein Todo mit Umlauten öäüÖÄÜß @work","text":"Ein Todo mit Umlauten öäüÖÄÜß","prio":0,"tags":["@work"],"star":false,"dateLastWrite":"2015-04-25T10:39:24.396Z","createdAt":"1970-01-01T00:00:00.000Z"},
-
-  {"_id":"hAuozkcBskmF9DgfT","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Ein ganz laaaaaaaaaaaaaaaaaaaaaaaanges Todo @work","text":"Ein ganz laaaaaaaaaaaaaaaaaaaaaaaanges Todo","prio":0,"tags":["@work"],"star":false,"dateLastWrite":"2015-04-25T13:03:37.997Z"},
-
-  {"_id":"QcSgYKSywrzjdSux3","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Test im Kontext home @home","text":"Test im Kontext home","prio":0,"tags":["@home"],"star":false,"dateLastWrite":"2015-04-25T13:34:46.336Z","checked":false}]
+[{"_id":"AtxSukhB2aqPNLu8t","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"A task without context","text":"A task without context","prio":0,"tags":[],"star":false,"startDate":null,"dueDate":null,"dateLastWrite":"2015-05-01T15:11:18.569Z"},
+  {"_id":"cNwZWhcYZtSnSPZXk","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Starred at home @home **","text":"Starred at home","prio":0,"tags":["@home"],"star":true,"dateLastWrite":"2015-04-25T13:05:15.031Z","createdAt":"1970-01-01T00:00:00.000Z"},
+  {"_id":"KDJijdmsL3ZTjZ5Zn","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Priority NOT highest but starred #19 **","text":"Priority NOT highest but starred","prio":19,"tags":[],"star":true,"startDate":null,"dueDate":null,"dateLastWrite":"2015-05-01T15:19:14.451Z"},
+  {"_id":"QcSgYKSywrzjdSux3","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Test with context home @home","text":"Test with context home","prio":0,"tags":["@home"],"star":false,"startDate":null,"dueDate":null,"dateLastWrite":"2015-05-01T15:02:27.125Z"},
+  {"_id":"EC2YrkYyGAAH9WD4L","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"WOK was here... @home","text":"WOK was here...","prio":0,"tags":["@home"],"star":false,"startDate":null,"dueDate":null,"dateLastWrite":"2015-05-01T15:23:48.947Z","notes":"A longer note...\nwith multiple lines\n3rd line\n4th line\nnow what?","hasDetails":true},
+  {"_id":"JRjLAb9ck33mz5uZC","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"A Todo with Umlauts öäüÖÄÜß @work","text":"A Todo with Umlauts öäüÖÄÜß","prio":0,"tags":["@work"],"star":false,"startDate":null,"dueDate":null,"dateLastWrite":"2015-05-01T15:02:06.142Z"},
+  {"_id":"qn2FAcHhwKSMa8mRn","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"A - task with Dates >27 <28","text":"A - task with Dates","prio":0,"tags":[],"star":false,"startDate":"2015-05-27T00:00:00.000Z","dueDate":"2015-05-28T00:00:00.000Z","dateLastWrite":"2015-05-01T15:11:36.842Z"},
+  {"_id":"8Dh4raRt2Gyrka6SY","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"B - task with Dates >27","text":"B - task with Dates","prio":0,"tags":[],"star":false,"startDate":"2015-05-27T00:00:00.000Z","dueDate":null,"dateLastWrite":"2015-05-01T15:11:31.466Z"},
+  {"_id":"wAgSqtyD23KuhvECv","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"C - task with Dates >1","text":"C - task with Dates","prio":0,"tags":[],"star":false,"startDate":"2015-05-01T00:00:00.000Z","dueDate":null,"dateLastWrite":"2015-05-01T15:11:27.562Z"},
+  {"_id":"RLsrKnAAKbRpxuFdj","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"E - task with Dates >04-29 <30","text":"E - task with Dates","prio":0,"tags":[],"star":false,"startDate":"2015-04-29T00:00:00.000Z","dueDate":"2015-05-30T00:00:00.000Z","dateLastWrite":"2015-05-01T15:11:23.795Z"},
+  {"_id":"uJzadH5c76ZwtBekh","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"G - task with Dates <3","text":"G - task with Dates","prio":0,"tags":[],"star":false,"startDate":null,"dueDate":"2015-05-03T00:00:00.000Z","dateLastWrite":"2015-05-01T15:18:07.734Z"},
+  {"_id":"zR7wtMzT6X43SFsNd","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"D - task with Dates >04-29 <04-30","text":"D - task with Dates","prio":0,"tags":[],"star":false,"startDate":"2015-04-29T00:00:00.000Z","dueDate":"2015-04-30T00:00:00.000Z","dateLastWrite":"2015-05-01T15:16:24.018Z","notes":"A Note for this task","hasDetails":true},
+  {"_id":"kiMXiWpnk3oLqCraE","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"F - task with Dates <30 @work","text":"F - task with Dates","prio":0,"tags":["@work"],"star":false,"startDate":null,"dueDate":"2015-05-30T00:00:00.000Z","dateLastWrite":"2015-05-01T15:11:12.803Z"},
+  {"_id":"bNJFLw6ndc9ga3yrZ","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"Blubb @home","text":"Blubb","prio":0,"tags":["@home"],"star":false,"createdAt":"2015-04-25T10:34:37.154Z","dateLastWrite":"2015-05-01T15:18:31.499Z","checked":true,"notes":"Some notes...","hasDetails":true},
+  {"_id":"TtgBCLDxD4xwuyWrE","owner":"y2YzoycvxWrrRPwEK","username":"demo","orgText":"This is done!","text":"This is done!","prio":0,"tags":[],"star":false,"startDate":null,"dueDate":null,"createdAt":"2015-05-01T15:21:58.061Z","dateLastWrite":"2015-05-01T15:22:03.403Z","checked":true}]
