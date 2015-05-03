@@ -16,12 +16,12 @@
                         <label for="id_chkRepeat">Repeat Task after Complete</label>
                     </div>
                     <div class="col s5 offset-s1">
-                        <input name="group1" type="radio" id="id_radOnCompleteDate" disabled="disabled"
+                        <input name="group1" type="radio" id="id_radOnCompleteDate" {{disabled_IfRepeatOff}}
                             {{checked_repeatOnCompleteDate}}/>
                         <label for="id_radOnCompleteDate">On Complete Date</label>
                     </div>
                     <div class="col s6">
-                        <input name="group1" type="radio" id="id_radOnTaskDate" disabled="disabled"
+                        <input name="group1" type="radio" id="id_radOnTaskDate" {{disabled_IfRepeatOff}}
                                {{checked_repeatOnTaskDate}}/>
                         <label for="id_radOnTaskDate">On Task Date (Due/Start)</label>
                     </div>
@@ -30,12 +30,13 @@
                         Every
                     </div>
                     <div class="col s2" style="padding-top: 13px;">
-                        <input id="id_inputNumber" type="number" class="validate" value="{{num_repeatEveryNumber}}" disabled="disabled">
+                        <input id="id_inputNumber" type="number" class="validate"
+                               value="{{num_repeatEveryNumber}}" {{disabled_IfRepeatOff}}>
                     </div>
 
 
                     <div class="input-field col s4">
-                        <select disabled="disabled" id="id_selInterval">
+                        <select {{disabled_IfRepeatOff}} id="id_selInterval">
                             <option value="day" {{selected_repeatSelInterval "day"}}>Day/s</option>
                             <option value="week" {{selected_repeatSelInterval "week"}}>Week/s</option>
                             <option value="month" {{selected_repeatSelInterval "month"}}>Month/s</option>

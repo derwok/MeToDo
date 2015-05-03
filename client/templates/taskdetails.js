@@ -10,6 +10,14 @@ Template.taskdetails.helpers({
         });
     },
 
+    disabled_IfRepeatOff: function () {
+        var repO = this.repeat;
+        if (!repO || !repO.repeat) {
+            return {disabled: "disabled"};
+        }
+        return "";
+    },
+
     checked_repeatOnCompleteDate: function () {
         var repO = this.repeat;
         if (!repO || repO.repeatOnCompleteDate) {
@@ -74,7 +82,7 @@ Template.taskdetails.events({
         $('select').material_select();
     },
 
-    
+
     "click #id_btnCloseEditTasktext": function (evt, tmpl) {
         if (Session.get("editing_taskdetails_with_id")) {
             Session.set("editing_taskdetails_with_id", null);

@@ -1,5 +1,5 @@
 <template name="task">
-    <tr class="{{#unless checked}}{{colorClassForDates}}{{/unless}}">
+    <tr class="{{#if checked}}checked{{else}}{{colorClassForDates}}{{/if}}">
         {{#if editing_task}}
             <td></td>
             <td></td>
@@ -50,10 +50,15 @@
                 {{/if}}
             </td>
             <td style="vertical-align: top">
-                    <a class="btn-floating waves-effect waves-light red delete"
-                       id="btnDeleteTask">
-                        <i class="mdi-action-highlight-remove"></i>
-                    </a>
+                <a href="#" id="btnDeleteTask" class="closetopright"
+                   style="font-size: 140%; padding-right:5px;">
+                    <i class="mdi-navigation-cancel"></i>
+                </a>
+
+                    <!--<a class="btn-floating waves-effect waves-light red delete"-->
+                       <!--id="btnDeleteTask">-->
+                        <!--<i class="mdi-action-highlight-remove"></i>-->
+                    <!--</a>-->
             </td>
         {{/if}}
     </tr>
