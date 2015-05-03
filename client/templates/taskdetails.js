@@ -10,7 +10,7 @@ Template.taskdetails.helpers({
         });
     },
 
-    repeatOnCompleteDate: function () {
+    checked_repeatOnCompleteDate: function () {
         var repO = this.repeat;
         if (!repO || repO.repeatOnCompleteDate) {
             return {checked: "checked"};
@@ -18,7 +18,7 @@ Template.taskdetails.helpers({
         return "";
     },
 
-    repeatOnTaskDate: function () {
+    checked_repeatOnTaskDate: function () {
         var repO = this.repeat;
         if (repO && repO.repeatOnTaskDate) {
             return {checked: "checked"};
@@ -27,7 +27,7 @@ Template.taskdetails.helpers({
     },
 
 
-    repeatEveryNumber: function () {
+    num_repeatEveryNumber: function () {
         var repO = this.repeat;
         // if no repeat active, then set on every "1"
         if (!repO || !repO.repeat) {
@@ -36,7 +36,7 @@ Template.taskdetails.helpers({
         return repO.everyNumber;
     },
 
-    repeatSelInterval: function (optionText) {
+    selected_repeatSelInterval: function (optionText) {
         var repO = this.repeat;
         // if no repeat active, then select "week" as default
         if ((!repO || !repO.repeat) && optionText == "month") {
@@ -51,7 +51,35 @@ Template.taskdetails.helpers({
 });
 
 Template.taskdetails.events({
- //add your events here
+    "click #id_chkRepeat": function (evt, tmpl) {
+        var chkRepeat = $('#id_chkRepeat')[0];
+        var radRepeatOnCompleteDate = $('#id_radOnCompleteDate');
+        var radRepeatOnTaskDate = $('#id_radOnTaskDate');
+        var numRepeatEveryNumber = $('#id_inputNumber');
+        var selRepeatEveryInterval = $('#id_selInterval');
+
+        if (chkRepeat.checked) {
+             radRepeatOnCompleteDate[0].checked = true;
+             radRepeatOnCompleteDate.removeAttr("disabled");
+             radRepeatOnTaskDate.removeAttr("disabled");
+             numRepeatEveryNumber.removeAttr("disabled");
+             selRepeatEveryInterval.removeAttr("disabled");
+        } else {
+             radRepeatOnCompleteDate[0].checked = false;
+             radRepeatOnCompleteDate.attr("disabled", "disabled");
+             radRepeatOnTaskDate.attr("disabled", "disabled");
+             numRepeatEveryNumber.attr("disabled", "disabled");
+             selRepeatEveryInterval.attr("disabled", "disabled");
+        }
+        $('select').material_select();
+    },
+
+    
+    "click #id_btnCloseEditTasktext": function (evt, tmpl) {
+        if (Session.get("editing_taskdetails_with_id")) {
+            Session.set("editing_taskdetails_with_id", null);
+        }
+    }
 });
 
 Template.taskdetails.onCreated(function() {
@@ -59,9 +87,8 @@ Template.taskdetails.onCreated(function() {
 });
 
 Template.taskdetails.onRendered(function() {
-    $(document).ready(function() {
-        $('select').material_select();
-    });});
+    $('select').material_select();
+});
 
 Template.taskdetails.onDestroyed(function() {
     //add your statement here

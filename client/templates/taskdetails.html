@@ -16,13 +16,13 @@
                         <label for="id_chkRepeat">Repeat Task after Complete</label>
                     </div>
                     <div class="col s5 offset-s1">
-                        <input name="group1" type="radio" id="id_radOnCompleteDate" class="with-gap" Xdisabled="disabled"
-                            {{repeatOnCompleteDate}}/>
+                        <input name="group1" type="radio" id="id_radOnCompleteDate" disabled="disabled"
+                            {{checked_repeatOnCompleteDate}}/>
                         <label for="id_radOnCompleteDate">On Complete Date</label>
                     </div>
                     <div class="col s6">
-                        <input name="group1" type="radio" id="id_radOnTaskDate" class="with-gap" Xdisabled="disabled"
-                               {{repeatOnTaskDate}}/>
+                        <input name="group1" type="radio" id="id_radOnTaskDate" disabled="disabled"
+                               {{checked_repeatOnTaskDate}}/>
                         <label for="id_radOnTaskDate">On Task Date (Due/Start)</label>
                     </div>
 
@@ -30,17 +30,16 @@
                         Every
                     </div>
                     <div class="col s2" style="padding-top: 13px;">
-                        <input id="id_inputNumber" type="number" class="validate" value="{{repeatEveryNumber}}">
+                        <input id="id_inputNumber" type="number" class="validate" value="{{num_repeatEveryNumber}}" disabled="disabled">
                     </div>
 
 
                     <div class="input-field col s4">
-                        <select Xdisabled="disabled" id="id_selInterval">
-                            <option value="" disabled selected>Choose Intervall</option>
-                            <option value="day" {{repeatSelInterval "day"}}>Day/s</option>
-                            <option value="week" {{repeatSelInterval "week"}}>Week/s</option>
-                            <option value="month" {{repeatSelInterval "month"}}>Month/s</option>
-                            <option value="year" {{repeatSelInterval "year"}}>Year/s</option>
+                        <select disabled="disabled" id="id_selInterval">
+                            <option value="day" {{selected_repeatSelInterval "day"}}>Day/s</option>
+                            <option value="week" {{selected_repeatSelInterval "week"}}>Week/s</option>
+                            <option value="month" {{selected_repeatSelInterval "month"}}>Month/s</option>
+                            <option value="year" {{selected_repeatSelInterval "year"}}>Year/s</option>
                         </select>
                     </div>
 
