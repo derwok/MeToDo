@@ -101,9 +101,10 @@ Meteor.methods({
             notestext = "";
         }
 
+        var aTask = Tasks.findOne(id);
         Tasks.update(id, {$set: {
             notes: notestext,
-            hasDetails: (notestext.length > 0),     // true/false depending on notes length
+            hasDetails: ((notestext.length > 0) || (aTask.repeat && aTask.repeat.repeat)),
             dateLastWrite: new Date()
         }});
     },
@@ -117,9 +118,10 @@ Meteor.methods({
         }
 
         console.log("Repeat Object:"+JSON.stringify(repeatObj));
+        var aTask = Tasks.findOne(id);
         Tasks.update(id, {$set: {
             repeat: repeatObj,
-            hasDetails: (repeatObj.repeat),
+            hasDetails: (repeatObj.repeat || (aTask.notes && aTask.notes.length > 0)),
             dateLastWrite: new Date()
         }});
     },
@@ -146,6 +148,7 @@ Meteor.methods({
     insertTaskObject: function (taskObject) {
         console.log("Meteor.methods.insertTaskObject");
 
+        delete taskObject["_id"];
         taskObject["owner"] = Meteor.userId();
         taskObject["username"] = Meteor.user().username;
         taskObject["dateLastWrite"] = new Date(taskObject["dateLastWrite"]);

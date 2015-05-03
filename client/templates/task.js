@@ -59,6 +59,16 @@ Template.task.helpers({
 
 Template.task.events({
     "click .toggle-checked": function () {
+
+        // If task has repeat activated, we must clone a time-shifted version
+        if (this.repeat && this.repeat.repeat) {
+            var clonedTask = Tasks.findOne(this._id);
+            if (clonedTask) {
+                clonedTask = calcRepeatedDates(clonedTask); // shift startDate / dueDate
+                Meteor.call("insertTaskObject", clonedTask);
+            }
+        }
+
         // Set the checked property to the opposite of its current value
         Meteor.call("setChecked", this._id, !this.checked);  // async server & client (latency compensation)
     },
