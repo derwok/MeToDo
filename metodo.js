@@ -100,13 +100,30 @@ Meteor.methods({
         if (!notestext) {
             notestext = "";
         }
-        console.log("id:"+id+" notes:"+notestext);
+
         Tasks.update(id, {$set: {
             notes: notestext,
             hasDetails: (notestext.length > 0),     // true/false depending on notes length
             dateLastWrite: new Date()
         }});
     },
+
+
+    updateTaskRepeat: function (id, repeatObj) {
+        console.log("Meteor.methods.updateTaskRepeat");
+        // Make sure the user is logged in before inserting a task
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+
+        console.log("Repeat Object:"+JSON.stringify(repeatObj));
+        Tasks.update(id, {$set: {
+            repeat: repeatObj,
+            hasDetails: (repeatObj.repeat),
+            dateLastWrite: new Date()
+        }});
+    },
+
 
     deleteTask: function (taskId) {
         console.log("Meteor.methods.deleteTask");

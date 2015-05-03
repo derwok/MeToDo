@@ -82,14 +82,7 @@ Template.task.events({
 
         // Do we have to save some details?
         if (Session.get("editing_taskdetails_with_id")) {
-            var notes = $('#id_edittaskdetails');
-            var task = Tasks.findOne(Session.get("editing_taskdetails_with_id"));
-            if (notes && task) {
-                notestext =  notes.val();
-                if (task.notes != notestext) {
-                    Meteor.call("updateTaskNotes", Session.get("editing_taskdetails_with_id"), notestext);
-                }
-            }
+            saveTaskDetails();
         }
 
         if (Session.equals("editing_taskdetails_with_id", this._id)) {
@@ -137,3 +130,35 @@ Template.task.events({
     }
 
 });  // Template.task.events
+
+
+var saveTaskDetails = function () {
+    var notes = $('#id_edittaskdetails');
+    var chkRepeat = $('#id_chkRepeat')[0];
+    var radRepeatOnCompleteDate = $('#id_radOnCompleteDate')[0];
+    var radRepeatOnTaskDate = $('#id_radOnTaskDate')[0];
+    var numRepeatEveryNumber = $('#id_inputNumber');
+    var selRepeatEveryInterval = $('#id_selInterval');
+
+    var task = Tasks.findOne(Session.get("editing_taskdetails_with_id"));
+
+    if (notes && task) {
+        notestext =  notes.val();
+        if (task.notes != notestext) {
+            Meteor.call("updateTaskNotes", Session.get("editing_taskdetails_with_id"), notestext);
+        }
+    }
+
+    var repeatObject = {repeat: false};
+    if (chkRepeat.checked) {
+        repeatObject['repeat'] = true;
+        repeatObject['repeatOnCompleteDate'] = radRepeatOnCompleteDate.checked;
+        repeatObject['repeatOnTaskDate'] = radRepeatOnTaskDate.checked;
+        repeatObject['everyNumber'] = numRepeatEveryNumber.val() * 1;
+        repeatObject['everyInterval'] = selRepeatEveryInterval.val();
+    }
+
+    if (JSON.stringify(task.repeat) !== JSON.stringify(repeatObject)) {
+        Meteor.call("updateTaskRepeat", Session.get("editing_taskdetails_with_id"), repeatObject);
+    }
+};

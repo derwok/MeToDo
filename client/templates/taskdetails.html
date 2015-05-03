@@ -1,11 +1,54 @@
 <template name="taskdetails">
     <br>
-    <div class="card z-depth-2">
+    <div class="card z-depth-2" style="position: relative; overflow: visible;">
         <div class="card-content teal-text">
+            <div class="row">
+                <div class="col s12">
                     <span class="text-darken-2">
                         <textarea id="id_edittaskdetails" placeholder="Notes for Task"
                                   class="materialize-textarea" {{triggerautofocus}}>{{notes}}</textarea>
                     </span>
+                </div>
+
+                <form action="#">
+                    <div class="col s12" style="padding-bottom: 10px;">
+                        <input type="checkbox" id="id_chkRepeat" checked="{{repeat.repeat}}"/>
+                        <label for="id_chkRepeat">Repeat Task after Complete</label>
+                    </div>
+                    <div class="col s5 offset-s1">
+                        <input name="group1" type="radio" id="id_radOnCompleteDate" class="with-gap" Xdisabled="disabled"
+                            {{repeatOnCompleteDate}}/>
+                        <label for="id_radOnCompleteDate">On Complete Date</label>
+                    </div>
+                    <div class="col s6">
+                        <input name="group1" type="radio" id="id_radOnTaskDate" class="with-gap" Xdisabled="disabled"
+                               {{repeatOnTaskDate}}/>
+                        <label for="id_radOnTaskDate">On Task Date (Due/Start)</label>
+                    </div>
+
+                    <div class="col s2 offset-s1" style="padding-top: 25px;">
+                        Every
+                    </div>
+                    <div class="col s2" style="padding-top: 13px;">
+                        <input id="id_inputNumber" type="number" class="validate" value="{{repeatEveryNumber}}">
+                    </div>
+
+
+                    <div class="input-field col s4">
+                        <select Xdisabled="disabled" id="id_selInterval">
+                            <option value="" disabled selected>Choose Intervall</option>
+                            <option value="day" {{repeatSelInterval "day"}}>Day/s</option>
+                            <option value="week" {{repeatSelInterval "week"}}>Week/s</option>
+                            <option value="month" {{repeatSelInterval "month"}}>Month/s</option>
+                            <option value="year" {{repeatSelInterval "year"}}>Year/s</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="toprightcorner" style="z-index: 9999;">
+            <a href="#" class="closetopright" id="id_btnCloseEditTasktext"><i class="mdi-navigation-cancel"></i></a>
         </div>
     </div>
 </template>
