@@ -4,6 +4,12 @@
 Tasks = new Mongo.Collection("tasks");
 Searches = new Mongo.Collection("searches");
 
+Meteor.startup(function () {
+    if (Meteor.isServer) {  // no index support on client side
+        Tasks._ensureIndex({owner: 1}); // make publishing a users tasks faster
+    }
+});
+
 ////////// Client Code! /////////
 if (Meteor.isClient) {
     Meteor.subscribe("tasks", function() {
