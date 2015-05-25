@@ -51,6 +51,9 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
+        if (text.length == 0) {
+            return;
+        }
 
         var orgText = text;
         var result = taskParseAll(text);

@@ -6,7 +6,7 @@
 
             {{#if currentUser}}
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#" id="mnuShowCompleted" title="Show/Hide Completed Tasks">
+                    <li><a href="#" id="mnuShowCompleted" title="Show/Hide Completed/Future Tasks">
                         {{#if showCompleted}}
                             <i class="mdi-toggle-check-box"></i>
                         {{else}}
@@ -30,9 +30,9 @@
                     <li class="teal">Me.Todo</li>
                     <li><a href="#" id="mnuShowCompleted">
                         {{#if showCompleted}}
-                            Hide Completed
+                            Hide Unimportant
                         {{else}}
-                            Show Completed
+                            Show Unimportant
                         {{/if}}
                     </a></li>
                     <li>

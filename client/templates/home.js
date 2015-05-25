@@ -129,6 +129,7 @@ Template.home.events({
             return false;
         }
 
+        text = replaceDoubleAtWithCurrentTag(text);
         Meteor.call("addTask", text);       // async server & client (latency compensation)
 
         // Clear form

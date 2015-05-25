@@ -123,6 +123,7 @@ Template.task.events({
         evt.preventDefault();
         if (evt.which === 13) {
             var text = tmpl.find(".edittask").value;
+            text = replaceDoubleAtWithCurrentTag(text);
             Meteor.call("updateTask", this._id, text);
             Session.set("editing_task_with_id", null);
             var edit = $('.main-entry');
