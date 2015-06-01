@@ -6,6 +6,14 @@
 
             {{#if currentUser}}
                 <ul class="right hide-on-med-and-down">
+                    <li><a href="#" id="mnuShowInbox" title="Show Inbox or Normal Task List">
+                        {{#if showInbox}}
+                            <i class="mdi-content-inbox"></i>
+                        {{else}}
+                            <i class="mdi-content-filter-list"></i>
+                        {{/if}}
+                    </a></li>
+
                     <li><a href="#" id="mnuShowCompleted" title="Show/Hide Completed/Future Tasks">
                         {{#if showCompleted}}
                             <i class="mdi-toggle-check-box"></i>
@@ -26,8 +34,17 @@
                     <li><a href="#" id="mnuSignOut"><i class="mdi-action-exit-to-app" title="User Log Out"></i></a></li>
                 </ul>
                 {{/if}}
+
                 <ul class="side-nav" id="mobile-demo">
                     <li class="teal">Me.Todo</li>
+                    <li><a href="#" id="mnuShowInbox">
+                        {{#if ShowInbox}}
+                            Show Tasklist
+                        {{else}}
+                            Show Inbox
+                        {{/if}}
+                    </a></li>
+
                     <li><a href="#" id="mnuShowCompleted">
                         {{#if showCompleted}}
                             Hide Unimportant

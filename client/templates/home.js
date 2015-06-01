@@ -8,6 +8,21 @@ Template.home.onRendered(function(){
 
 Template.home.helpers({
 
+    taskinbox: function (taskBlockName) {
+        var searchcriteria = {$or: [{tags: null},
+                                    {tags: []},
+                                    {tags: { $exists : false }} ] };
+        var sortcriteria = {sort: [["dateLastWrite","desc"]]};
+
+        if (taskBlockName == "COMPLETED_TASKS") {
+            searchcriteria["checked"] = true;
+        } else {  // NORMAL
+            searchcriteria["checked"] = {$ne: true};
+        }
+
+        return Tasks.find(searchcriteria, sortcriteria);
+    },
+
     tasks: function (taskBlockName) {
         var searchcriteria = {};
         var sortcriteria = {};
@@ -91,6 +106,10 @@ Template.home.helpers({
 
     searchMode: function () {
         return Session.get("search-query");
+    },
+
+    showInbox: function () {
+        return Session.get('setting.showInbox');
     },
 
     showCompleted: function () {

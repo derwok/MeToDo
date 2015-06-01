@@ -22,6 +22,7 @@ if (Meteor.isClient) {
     });
 
     Session.set("setting.showCompleted", false);
+    Session.set("setting.showInbox", false);
 }  // Meteor.isClient
 
 

@@ -23,25 +23,36 @@
                     <input type="text" name="text" class="main-entry"
                            placeholder="New Task #Prio @Tag ** (? for search)" />
                 </form>
-                {{#if searchMode}}<span class="toprightsearchtext">{{searchMode}}</span>{{/if}}
+                {{#if searchMode}}<span class="toprightsearchtext" style="font-size: 200%;">{{searchMode}}</span>{{/if}}
             </div>
             {{#unless privacyMode}}
             <div class="col s12">
                 <table class="hoverable z-depth-2">
                     <tbody>
-                    {{#each tasks "STARRED_TASKS"}}
-                        {{> task}}
-                    {{/each}}
-                    {{#each tasks "HOT_TASKS"}}
-                        {{> task}}
-                    {{/each}}
-                    {{#each tasks "NORMAL_TASKS"}}
-                        {{> task}}
-                    {{/each}}
-                    {{#if showCompleted}}
-                        {{#each tasks "COMPLETED_TASKS"}}
+                    {{#if showInbox}}
+                        {{#each taskinbox "NORMAL_TASKS"}}
                             {{> task}}
                         {{/each}}
+                        {{#if showCompleted}}
+                            {{#each taskinbox "COMPLETED_TASKS"}}
+                                {{> task}}
+                            {{/each}}
+                        {{/if}}
+                    {{else}}
+                        {{#each tasks "STARRED_TASKS"}}
+                            {{> task}}
+                        {{/each}}
+                        {{#each tasks "HOT_TASKS"}}
+                            {{> task}}
+                        {{/each}}
+                        {{#each tasks "NORMAL_TASKS"}}
+                            {{> task}}
+                        {{/each}}
+                        {{#if showCompleted}}
+                            {{#each tasks "COMPLETED_TASKS"}}
+                                {{> task}}
+                            {{/each}}
+                        {{/if}}
                     {{/if}}
                     </tbody>
                 </table>
