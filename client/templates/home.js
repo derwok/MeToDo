@@ -175,6 +175,7 @@ Template.home.events({
         if (text.substring(0, 1) === "?") {
             var search = text.substring(1, text.length);
             Session.set("search-query", search);
+            Session.set('setting.showInbox', null);     // leave Inbox mode on search
         }
     },
 

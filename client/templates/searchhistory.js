@@ -8,7 +8,7 @@ Template.searchhistory.events({
             Meteor.call("deleteSearch", this._id);
         } else {
             var searchtext = this.searchText;
-            console.log("search: "+ searchtext);
+            Session.set('setting.showInbox', null);     // leave Inbox mode on search
             Session.set("search-query", searchtext.substr(1)); // remove the leading "?"
             Meteor.call("addSearch", searchtext);              // add to beginning of list
 
