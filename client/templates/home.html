@@ -23,7 +23,12 @@
                     <input type="text" name="text" class="main-entry"
                            placeholder="New Task #Prio @Tag ** (? for search)" />
                 </form>
-                {{#if searchMode}}<span class="toprightsearchtext" style="font-size: 200%;">{{searchMode}}</span>{{/if}}
+                {{#if searchMode}}
+                    <span class="toprightsearchtext" style="font-size: 200%;">{{searchMode}}</span>
+                {{/if}}
+                {{#if taskinboxCount}}
+                    <a href="#" id="btnInboxCount"><i class="bottomrightinboxcount small mdi-image-filter-{{taskinboxCount}}"></i></a>
+                {{/if}}
             </div>
             {{#unless privacyMode}}
             <div class="col s12">

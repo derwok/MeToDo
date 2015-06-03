@@ -8,21 +8,6 @@ Template.home.onRendered(function(){
 
 Template.home.helpers({
 
-    taskinbox: function (taskBlockName) {
-        var searchcriteria = {$or: [{tags: null},
-                                    {tags: []},
-                                    {tags: { $exists : false }} ] };
-        var sortcriteria = {sort: [["dateLastWrite","desc"]]};
-
-        if (taskBlockName == "COMPLETED_TASKS") {
-            searchcriteria["checked"] = true;
-        } else {  // NORMAL
-            searchcriteria["checked"] = {$ne: true};
-        }
-
-        return Tasks.find(searchcriteria, sortcriteria);
-    },
-
     tasks: function (taskBlockName) {
         var searchcriteria = {};
         var sortcriteria = {};
@@ -127,13 +112,38 @@ Template.home.helpers({
                 belowOrigin: true // Displays dropdown below the button
             });
         });
+    },
 
+    taskinbox: function (taskBlockName) {
+        return taskInboxQueryResults(taskBlockName);
+    },
+
+    taskinboxCount: function () {
+
+        var count = taskInboxQueryResults("").count();
+        if (count > 9) {
+            count = "9-plus";   // see materializecss icons: mdi-image-filter-1 ... mdi-image-filter-9-plus
+        }
+        return count;
     }
-
 
 });
 
 
+var taskInboxQueryResults = function (taskBlockName) {
+    var searchcriteria = {$or: [{tags: null},
+                                {tags: []},
+                                {tags: { $exists : false }} ] };
+    var sortcriteria = {sort: [["dateLastWrite","desc"]]};
+
+    if (taskBlockName == "COMPLETED_TASKS") {
+        searchcriteria["checked"] = true;
+    } else {  // NORMAL
+        searchcriteria["checked"] = {$ne: true};
+    }
+
+    return Tasks.find(searchcriteria, sortcriteria);
+};
 
 //////////////////////////////////////////////////////////////
 Template.home.events({
@@ -199,6 +209,12 @@ Template.home.events({
                 mainEntry.val('');
             }
         }
+    },
+
+    "click #btnInboxCount": function (evt, tmpl) {
+        console.log("home click #btnInboxCount");
+        evt.preventDefault();
+        toggleInboxHelper();
     }
 
 });  // Template.mainbody.events

@@ -27,9 +27,8 @@ Template.nav.helpers({
     showInbox: function () {
         return Session.get("setting.showInbox");
     }
-
-
 });
+
 
 Template.nav.events({
     "click #mnuTaskExport": function (evt, tmpl) {
@@ -40,15 +39,7 @@ Template.nav.events({
 
     "click #mnuShowInbox": function (evt, tmpl) {
         evt.preventDefault();
-        if (! Session.get('setting.showInbox')) {
-            Session.set("previous-search-query", Session.get("search-query"));
-        }
-        Session.set('setting.showInbox', !Session.get('setting.showInbox'));
-        if (Session.get('setting.showInbox')) {
-            Session.set("search-query", null);
-        } else {
-            Session.set("search-query", Session.get("previous-search-query"));
-        }
+        toggleInboxHelper();
     },
 
     "click #mnuShowCompleted": function (evt, tmpl) {
