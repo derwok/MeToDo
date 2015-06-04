@@ -26,7 +26,17 @@ Template.nav.helpers({
 
     showInbox: function () {
         return Session.get("setting.showInbox");
+    },
+
+    taskinboxCount: function () {
+
+        var count = taskInboxQueryResults("").count();
+        if (count > 9) {
+            count = "9-plus";   // see materializecss icons: mdi-image-filter-1 ... mdi-image-filter-9-plus
+        }
+        return count;
     }
+
 });
 
 

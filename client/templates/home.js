@@ -116,34 +116,11 @@ Template.home.helpers({
 
     taskinbox: function (taskBlockName) {
         return taskInboxQueryResults(taskBlockName);
-    },
-
-    taskinboxCount: function () {
-
-        var count = taskInboxQueryResults("").count();
-        if (count > 9) {
-            count = "9-plus";   // see materializecss icons: mdi-image-filter-1 ... mdi-image-filter-9-plus
-        }
-        return count;
     }
 
 });
 
 
-var taskInboxQueryResults = function (taskBlockName) {
-    var searchcriteria = {$or: [{tags: null},
-                                {tags: []},
-                                {tags: { $exists : false }} ] };
-    var sortcriteria = {sort: [["dateLastWrite","desc"]]};
-
-    if (taskBlockName == "COMPLETED_TASKS") {
-        searchcriteria["checked"] = true;
-    } else {  // NORMAL
-        searchcriteria["checked"] = {$ne: true};
-    }
-
-    return Tasks.find(searchcriteria, sortcriteria);
-};
 
 //////////////////////////////////////////////////////////////
 Template.home.events({

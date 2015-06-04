@@ -141,15 +141,7 @@ a.closetopright:active{
 
 .toprightsearchtext{
   position:absolute;
-  top: 5px;
-  right: 10px;
-  color: teal;
-  opacity: 0.5;
-}
-
-.bottomrightinboxcount{
-  position:absolute;
-  top: 35px;
+  top: 18px;
   right: 10px;
   color: teal;
   opacity: 0.5;

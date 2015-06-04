@@ -6,13 +6,25 @@
 
             {{#if currentUser}}
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#" id="mnuShowInbox" title="Show Inbox or Normal Task List">
+
+                    {{#if taskinboxCount}}
+                        <li><a href="#" id="mnuShowInbox" title="Show Inbox or Normal Task List">
+                            {{#if showInbox}}
+                                <i class="mdi-image-filter-{{taskinboxCount}}" style="color: coral;"></i>
+                            {{else}}
+                                <i class="mdi-image-filter-{{taskinboxCount}}"></i>
+                            {{/if}}
+                        </a></li>
+                    {{else}}
                         {{#if showInbox}}
-                            <i class="mdi-content-inbox"></i>
-                        {{else}}
-                            <i class="mdi-content-filter-list"></i>
+                        <li><a href="#" id="mnuShowInbox" title="Show Normal Task List">
+                                <i class="mdi-action-list"></i>
+                        </a></li>
                         {{/if}}
-                    </a></li>
+                    {{/if}}
+
+
+
 
                     <li><a href="#" id="mnuShowCompleted" title="Show/Hide Completed/Future Tasks">
                         {{#if showCompleted}}
@@ -41,7 +53,7 @@
                         {{#if showInbox}}
                             Show Tasklist
                         {{else}}
-                            Show Inbox
+                            Show Inbox ({{{taskinboxCount}}} tasks)
                         {{/if}}
                     </a></li>
 
