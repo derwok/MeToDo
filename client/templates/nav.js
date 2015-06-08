@@ -35,6 +35,15 @@ Template.nav.helpers({
             count = "9-plus";   // see materializecss icons: mdi-image-filter-1 ... mdi-image-filter-9-plus
         }
         return count;
+    },
+
+    connectionStatus: function() {
+        return Meteor.status();
+    },
+
+    connectionWaitTime: function () {
+        var secondsToRetry = (Meteor.status().retryTime - (new Date()).getTime())/1000;
+        return Math.round(secondsToRetry);
     }
 
 });
@@ -67,6 +76,11 @@ Template.nav.events({
         if (Meteor.userId()) {
             AccountsTemplates.logout();
         }
+    },
+
+    "click #btnConnectionLost": function (evt, tmpl) {
+        evt.preventDefault();
+        Meteor.reconnect();
     }
 });
 

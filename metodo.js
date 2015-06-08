@@ -142,9 +142,8 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
-        Meteor.defer(function () {
-            Tasks.remove(taskId);
-        });
+
+        Tasks.remove(taskId);
     },
 
     removeAllTasksOfUser: function () {
