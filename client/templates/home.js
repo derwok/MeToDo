@@ -9,76 +9,32 @@ Template.home.onRendered(function(){
 Template.home.helpers({
 
     tasks: function (taskBlockName) {
-        var searchcriteria = {};
-        var sortcriteria = {};
+        return taskQueryResults(taskBlockName);
+    },
 
-        if (Session.get("search-query")) {
-            var searchtext = Session.get("search-query");
-            searchcriteria = searchParseAll(searchtext);
-        }
-        // sort & search according to the task block we render
-        // 1st: STARRED tasks - always
-        // 2nd: HOT TASKS - always
-        // 3rd: NORMAL TASKS - always
-        // 4th: checked (done) tasks - optional!
-        if (taskBlockName == "COMPLETED_TASKS") {
-            searchcriteria["checked"] = true;
-            sortcriteria = {sort: [["dateLastWrite","desc"]]};
-        } else {  // STARRED, HOT & NORMAL
-            searchcriteria["checked"] = {$ne: true};
+    taskinbox: function (taskBlockName) {
+        return taskInboxQueryResults(taskBlockName);
+    },
 
-            var hotDateZone = new Date();  // To find tasks that are due the next NN days
-            hotDateZone.setDate(hotDateZone.getDate() + DEFAULT_HOT_ZONE_IN_DAYS);
-
-            if (taskBlockName == "STARRED_TASKS") {  // star always above everything!
-                searchcriteria["star"] = true;
+    countVisibleTasks: function () {
+        var count = 0;
+        if (Session.get("privacyMode"))
+            return count;
+        if (Session.get('setting.showInbox')) {
+            count = taskInboxQueryResults().count();
+            if (Session.get('setting.showCompleted')) {
+                count += taskInboxQueryResults("COMPLETED_TASKS").count();
             }
-
-            if (taskBlockName == "HOT_TASKS") {
-                searchcriteria["star"] = false;     // no stars below STARRED block
-                searchcriteria = {$and: [searchcriteria,
-                                        {$and: [{dueDate: {$exists : true } },     // find hot tasks
-                                                {dueDate: {$ne: null} },
-                                                {dueDate: {$lte: hotDateZone} }
-                                               ]
-                                        }]
-                                 };
+        } else {
+            count = taskQueryResults("STARRED_TASKS").count();
+            count += taskQueryResults("HOT_TASKS").count();
+            count += taskQueryResults("NORMAL_TASKS").count();
+            if (Session.get('setting.showCompleted')) {
+                count += taskQueryResults("COMPLETED_TASKS").count();
             }
-
-            if (taskBlockName == "NORMAL_TASKS") {
-                searchcriteria["star"] = false;     // no stars below STARRED block
-                searchcriteria = {$and: [searchcriteria,
-                                        {$or: [{dueDate: {$exists : false } },  // skip hot tasks
-                                                {dueDate: null },
-                                                {dueDate: {$gt: hotDateZone} }
-                                               ]
-                                        }]
-                                 };
-            }
-
-
-            // Unless we want to "Show All"
-            if (! Session.get('setting.showCompleted')) {
-                // Hide tasks with future start date.
-                // So, we only want to see tasks with either
-                // * non existing startDate attribute or
-                // * startDate == null
-                // * a startDate in the past
-                searchcriteria = {$and: [searchcriteria,
-                                        {$or: [{startDate: {$exists : false} },
-                                               {startDate: null },
-                                               {startDate: {$lte: new Date()}}
-                                              ]
-                                        }]
-                                 };
-            }
-
-            sortcriteria = {sort: [
-                                    ["prio","asc"],
-                                    ["dateLastWrite","desc"]]};
         }
 
-        return Tasks.find(searchcriteria, sortcriteria);
+        return count;
     },
 
     searches: function () {
@@ -112,12 +68,7 @@ Template.home.helpers({
                 belowOrigin: true // Displays dropdown below the button
             });
         });
-    },
-
-    taskinbox: function (taskBlockName) {
-        return taskInboxQueryResults(taskBlockName);
     }
-
 });
 
 
