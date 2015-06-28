@@ -28,6 +28,11 @@ Template.nav.helpers({
         return Session.get("setting.showInbox");
     },
 
+    showArchive: function () {
+        return Session.get("setting.showArchive");
+    },
+
+
     taskinboxCount: function () {
 
         var count = taskInboxQueryResults("").count();
@@ -60,6 +65,12 @@ Template.nav.events({
         evt.preventDefault();
         toggleInboxHelper();
     },
+
+    "click #mnuShowArchive": function (evt, tmpl) {
+        evt.preventDefault();
+        toggleArchiveHelper();
+    },
+
 
     "click #mnuShowCompleted": function (evt, tmpl) {
         evt.preventDefault();

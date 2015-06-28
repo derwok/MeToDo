@@ -1,5 +1,10 @@
 
 
+toggleArchiveHelper = function () {
+    Session.set('setting.showArchive', !Session.get('setting.showArchive'));
+};
+
+
 toggleInboxHelper = function () {
     if (! Session.get('setting.showInbox')) {
         Session.set("previous-search-query", Session.get("search-query"));

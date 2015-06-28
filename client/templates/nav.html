@@ -23,6 +23,13 @@ Click to reconnect."></i></a>
             {{#if currentUser}}
                 <ul class="right hide-on-med-and-down">
 
+                    <li><a href="#" id="mnuShowArchive" title="Show Archived Tasks">
+                        {{#if showArchive}}
+                            <i class="mdi-av-replay" style="color: coral;"></i>
+                        {{else}}
+                            <i class="mdi-av-replay"></i>
+                        {{/if}}
+                    </a></li>
                     {{#if taskinboxCount}}
                         <li><a href="#" id="mnuShowInbox" title="Show Inbox or Normal Task List">
                             {{#if showInbox}}

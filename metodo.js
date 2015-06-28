@@ -2,17 +2,23 @@
 // Meteor.startup(function () {...}
 
 Tasks = new Mongo.Collection("tasks");
+TasksArchive = new Mongo.Collection("tasksarchive");
 Searches = new Mongo.Collection("searches");
 
 Meteor.startup(function () {
     if (Meteor.isServer) {  // no index support on client side
         Tasks._ensureIndex({owner: 1}); // make publishing a users tasks faster
+        TasksArchive._ensureIndex({owner: 1}); // make publishing a users tasks faster
+
+        autoarchivefunction();  // call immediately at launsch, then regular via Meteor.setTimeout()
     }
 });
 
 ////////// Client Code! /////////
 if (Meteor.isClient) {
     Meteor.subscribe("tasks", function() {
+    });
+    Meteor.subscribe("tasksarchive", function() {
     });
     Meteor.subscribe("searches", function() {
     });
@@ -30,6 +36,9 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
     Meteor.publish("tasks", function () {
         return Tasks.find({owner: this.userId});
+    });
+    Meteor.publish("tasksarchive", function () {
+        return TasksArchive.find({owner: this.userId});
     });
     Meteor.publish("searches", function () {
         return Searches.find({owner: this.userId});
@@ -220,7 +229,17 @@ Meteor.methods({
         Meteor.defer(function () {
             Searches.remove(searchId);
         });
+    },
+
+    archiveTask: function (archiveID) {
+        aTask = Tasks.findOne({_id: archiveID});
+        if (aTask) {
+            delete aTask["_id"];
+            TasksArchive.insert(aTask);
+            Tasks.remove({_id: archiveID});
+        }
     }
+
 });
 
 //if (Meteor.isServer) {

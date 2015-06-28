@@ -16,6 +16,10 @@ Template.home.helpers({
         return taskInboxQueryResults(taskBlockName);
     },
 
+    taskarchive: function () {
+        return TasksArchive.find();
+    },
+
     countVisibleTasks: function () {
         var count = 0;
         if (Session.get("privacyMode"))
@@ -52,6 +56,11 @@ Template.home.helpers({
     showInbox: function () {
         return Session.get('setting.showInbox');
     },
+
+    showArchive: function () {
+        return Session.get('setting.showArchive');
+    },
+
 
     showCompleted: function () {
         return Session.get('setting.showCompleted');
