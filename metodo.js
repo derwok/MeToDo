@@ -10,7 +10,8 @@ Meteor.startup(function () {
         Tasks._ensureIndex({owner: 1}); // make publishing a users tasks faster
         TasksArchive._ensureIndex({owner: 1}); // make publishing a users tasks faster
 
-        autoarchivefunction();  // call immediately at launsch, then regular via Meteor.setTimeout()
+        // call immediately at launch, then regular via Meteor.setTimeout()
+        autoarchivefunction();
     }
 });
 

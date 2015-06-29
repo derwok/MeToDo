@@ -1,15 +1,26 @@
 
 
 toggleArchiveHelper = function () {
+    if (! Session.get('setting.showInbox') && !Session.get('setting.showArchive')) {
+        Session.set("previous-search-query", Session.get("search-query"));
+    }
     Session.set('setting.showArchive', !Session.get('setting.showArchive'));
+    Session.set('privacyMode', false);  // leave privacy mode
+    Session.set('setting.showInbox', false);
+    if (Session.get('setting.showArchive')) {
+        Session.set("search-query", null);
+    } else {
+        Session.set("search-query", Session.get("previous-search-query"));
+    }
 };
 
 
 toggleInboxHelper = function () {
-    if (! Session.get('setting.showInbox')) {
+    if (! Session.get('setting.showInbox') && !Session.get('setting.showArchive')) {
         Session.set("previous-search-query", Session.get("search-query"));
     }
     Session.set('setting.showInbox', !Session.get('setting.showInbox'));
+    Session.set('setting.showArchive', false);
     Session.set('privacyMode', false);  // leave privacy mode
     if (Session.get('setting.showInbox')) {
         Session.set("search-query", null);

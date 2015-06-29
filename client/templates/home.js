@@ -17,18 +17,21 @@ Template.home.helpers({
     },
 
     taskarchive: function () {
-        return TasksArchive.find();
+        return TasksArchive.find({}, {sort: [["dateLastWrite","desc"]]});
     },
 
     countVisibleTasks: function () {
-        var count = 0;
         if (Session.get("privacyMode"))
-            return count;
+            return 0;
+
+        var count = 0;
         if (Session.get('setting.showInbox')) {
             count = taskInboxQueryResults().count();
             if (Session.get('setting.showCompleted')) {
                 count += taskInboxQueryResults("COMPLETED_TASKS").count();
             }
+        } else if (Session.get('setting.showArchive')) {
+            count = TasksArchive.find().count();
         } else {
             count = taskQueryResults("STARRED_TASKS").count();
             count += taskQueryResults("HOT_TASKS").count();

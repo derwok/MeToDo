@@ -23,13 +23,6 @@ Click to reconnect."></i></a>
             {{#if currentUser}}
                 <ul class="right hide-on-med-and-down">
 
-                    <li><a href="#" id="mnuShowArchive" title="Show Archived Tasks">
-                        {{#if showArchive}}
-                            <i class="mdi-av-replay" style="color: coral;"></i>
-                        {{else}}
-                            <i class="mdi-av-replay"></i>
-                        {{/if}}
-                    </a></li>
                     {{#if taskinboxCount}}
                         <li><a href="#" id="mnuShowInbox" title="Show Inbox or Normal Task List">
                             {{#if showInbox}}
@@ -64,6 +57,13 @@ Click to reconnect."></i></a>
                             <i class="mdi-action-lock-open"></i>
                         {{/if}}
                     </a></li>
+                    <li><a href="#" id="mnuShowArchive" title="Show/Hide Archived Tasks">
+                        {{#if showArchive}}
+                            <i class="mdi-av-replay" style="color: coral;"></i>
+                        {{else}}
+                            <i class="mdi-av-replay"></i>
+                        {{/if}}
+                    </a></li>
                     <li><a href="/exportimport"><i class="mdi-file-file-upload" title="Upload JSON Data"></i></a></li>
                     <li><a href="/api/tasks/{{userID}}"><i class="mdi-file-file-download" title="Download JSON Data"></i></a></li>
                     <li><a href="#" id="mnuSignOut"><i class="mdi-action-exit-to-app" title="User Log Out"></i></a></li>
@@ -95,6 +95,14 @@ Click to reconnect."></i></a>
                                 Privacy On (Alt+F1)
                             {{/if}}
                             </a></li>
+                    <li><a href="#" id="mnuShowArchive">
+                        {{#if showArchive}}
+                            Hide Archive
+                        {{else}}
+                            Show Archive
+                        {{/if}}
+                    </a></li>
+
                     <li>
                         <a href="/exportimport">JSON Upload</a></li>
                     <li>
