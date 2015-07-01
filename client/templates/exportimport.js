@@ -31,15 +31,9 @@ Template.exportimport.events({
                 for (var i=0; i<tasksarray.length; i++) {
                     var taskObj = tasksarray[i];
 
-                    // we have to explicitly convert all Date objects  from JSON strings
-                    for (var property in taskObj) {
-                        if (taskObj.hasOwnProperty(property)) {
-                            // e.g., createdAt:"2015-05-03T17:30:29.620Z"
-                            if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z$/.test(taskObj[property])) {
-                                taskObj[property] = new Date(taskObj[property]);
-                            }
-                        }
-                    }
+                    // we have to explicitly convert all Date objects  from JSON date strings to real date objects
+                    fixDateObjectsRecursive(taskObj);
+
                     Meteor.call("insertTaskObject", taskObj);
                 }
                 alert("Imported "+tasksarray.length+ " tasks: OK");
@@ -58,16 +52,20 @@ Template.exportimport.events({
 });
 
 
-var recursiveIteration = function (object) {
-    for (var property in object) {
-        if (object.hasOwnProperty(property)) {
-            if (typeof object[property] == "object"){
-                recursiveIteration(object[property]);
+var fixDateObjectsRecursive = function (taskObject) {
+    for (var property in taskObject) {
+        if (taskObject.hasOwnProperty(property)) {
+            if (typeof taskObject[property] == "object"){
+                fixDateObjectsRecursive(taskObject[property]);
             }else{
-                //found a property which is not an object, check for your conditions here
+                //found a property which is not an object, check if its a date string
+                if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z$/.test(taskObject[property])) {
+                    taskObject[property] = new Date(taskObject[property]);
+                }
             }
         }
     }
+
 };
 
 

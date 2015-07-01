@@ -162,6 +162,7 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
         Tasks.remove({owner: Meteor.userId()});
+        TasksArchive.remove({owner: Meteor.userId()});
     },
 
     insertTaskObject: function (taskObject) {
