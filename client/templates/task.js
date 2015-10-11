@@ -54,6 +54,15 @@ Template.task.helpers({
         }
 
         return colorclass;
+    },
+
+    dragborder: function () {
+        var dragtarget = Session.get("CurrentDragTargetTaskID");
+        // console.log("    -   Border?:"+this._id+" == "+dragtarget);
+        if (this._id == dragtarget) {
+            return "dragborder";
+        }
+        return "";
     }
 });
 

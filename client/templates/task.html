@@ -1,5 +1,14 @@
 <template name="task">
-    <tr class="{{#if checked}}checked{{else}}{{colorClassForDates}}{{/if}}">
+    <tr class="{{#if checked}}checked{{else}}{{colorClassForDates}}{{/if}} {{dragborder}}"
+        draggable="true"
+        ondragstart="Template.task.MT_drag(event)"
+        ondragenter="Template.task.MT_dragEnter(event)"
+        ondragover="Template.task.MT_dragOver(event)"
+        ondrop="Template.task.MT_drop(event)"
+        MTTaskID = "{{_id}}"
+        >
+
+
         {{#if editing_task}}
             <td></td>
             <td></td>

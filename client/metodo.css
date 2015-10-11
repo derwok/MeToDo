@@ -131,6 +131,10 @@ a.closetopright:hover {
   left: -1px;
 }
 
+tr.dragborder {
+  border-top: 2px solid blue;
+}
+
 a.closetopright:active{
   outline:0;
   font-size: 150%;
