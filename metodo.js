@@ -48,8 +48,14 @@ if (Meteor.isServer) {
     // Searches.remove({});
      // *** database/schema migration hook ***
     //var tasks = Tasks.find().forEach(function(task){
-    //    console.log("Task:"+task.text);
-    //    Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
+    //    console.log("Migrating Task:"+task.text);
+    //    // Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
+    //    Tasks.update(task._id, {$set: {rank: 1.0}});
+    //});
+    //tasks = TasksArchive.find().forEach(function(task){
+    //    console.log("Migrating Archive Task:"+task.text);
+    //    // Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
+    //    TasksArchive.update(task._id, {$set: {rank: 1.0}});
     //});
 }
 

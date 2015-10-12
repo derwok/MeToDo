@@ -47,9 +47,19 @@ Template.task.MT_drop = function (evt) {
     Session.set("CurrentDragTargetEnterCount", 0);
     Session.set("CurrentDragTargetTaskID", undefined);
 
-    var tr = $(evt.target).closest("tr");
-    var targetTaskID = tr.attr('MTTaskID');
+    var trBelow = $(evt.target).closest("tr");
+    var taskIDBelow = trBelow.attr('MTTaskID');
+    var trAbove = $(trBelow).prev();
     var draggedTaskID = evt.dataTransfer.getData("MTTaskID");
-    console.log("DROPPED! " + draggedTaskID + " => "+ targetTaskID);
+    var taskIDAbove = undefined;
+    if (trAbove[0]) {
+        taskIDAbove = trAbove.attr('MTTaskID');
+    }
+
+    console.log("DROPPED! " + draggedTaskID + " => "+ taskIDBelow);
     console.log(evt);
+    console.log("prev:");
+    console.log(trAbove);
+    if (trAbove)
+        console.log(trAbove[0]);
 };

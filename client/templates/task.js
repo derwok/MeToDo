@@ -63,6 +63,24 @@ Template.task.helpers({
             return "dragborder";
         }
         return "";
+    },
+
+    enableDragAndDrop: function () {
+        // no drag'n'drop when we show the Inbox
+        if (Session.get('setting.showInbox')) {
+            return {};
+        }
+
+        var dNdAttributes = {
+            ondragstart:"Template.task.MT_drag(event)",
+            ondragover:"Template.task.MT_dragOver(event)",
+            ondragleave:"Template.task.MT_dragLeave(event)",
+            ondrop:"Template.task.MT_drop(event)"
+        };
+        if (!this.checked) {
+            dNdAttributes.draggable = "true";
+        }
+        return dNdAttributes;
     }
 });
 
