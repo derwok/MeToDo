@@ -77,7 +77,11 @@ Template.task.helpers({
             ondragleave:"Template.task.MT_dragLeave(event)",
             ondrop:"Template.task.MT_drop(event)"
         };
-        if (!this.checked) {
+
+        // Tasks are only draggable if...
+        if (!this.checked &&     // task is NOT checked
+            this._id != Session.get("editing_task_with_id"))    // task is NOT in edit mode
+        {
             dNdAttributes.draggable = "true";
         }
         return dNdAttributes;
