@@ -54,7 +54,6 @@ if (Meteor.isServer) {
     //});
     //tasks = TasksArchive.find().forEach(function(task){
     //    console.log("Migrating Archive Task:"+task.text);
-    //    // Tasks.update(task._id, {$set: {prio: task.prio * 1}});    // convert prio from string to number
     //    TasksArchive.update(task._id, {$set: {rank: 1.0}});
     //});
 }

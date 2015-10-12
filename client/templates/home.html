@@ -48,12 +48,15 @@
                                 {{/each}}
                             {{/if}}
                         {{else}}
+                            <tr class="taskarea" MTTaskArea="STARRED_TASKS" style="display: none"></tr>
                             {{#each tasks "STARRED_TASKS"}}
                                 {{> task}}
                             {{/each}}
+                            <tr class="taskarea" MTTaskArea="HOT_TASKS" style="display: none"></tr>
                             {{#each tasks "HOT_TASKS"}}
                                 {{> task}}
                             {{/each}}
+                            <tr class="taskarea" MTTaskArea="NORMAL_TASKS" style="display: none"></tr>
                             {{#each tasks "NORMAL_TASKS"}}
                                 {{> task}}
                             {{/each}}
