@@ -12,25 +12,18 @@ Template.task.MT_drag = function (evt) {
 };
 
 
-Template.task.MT_dragEnter = function (evt) {
-    var tr = $(evt.target).closest("tr");
-    var targetTaskID = tr.attr('MTTaskID');
-    if (! Session.get("CurrentDragTargetEnterCount")) {
-        Session.set("CurrentDragTargetEnterCount", 0)
-    }
-    Session.set("CurrentDragTargetEnterCount", Session.get("CurrentDragTargetEnterCount")+1);
-    Session.set("CurrentDragTargetTaskID", targetTaskID);
-
-    //console.log("DRAGENTER!" + Session.get("CurrentDragTargetEnterCount"));
-    //console.log(evt);
-    //console.log("TR.MTTaskID="+tr.attr('MTTaskID'));
-};
-
-
 Template.task.MT_dragOver = function (evt) {
     var tr = $(evt.target).closest("tr");
+    var targetTaskID = tr.attr('MTTaskID');
     var draggable = tr.attr('draggable');
-    // console.log("DRAGOVER:"+draggable);
+    //console.log("DRAGOVER:"+draggable+" targetID:"+targetTaskID);
+    if (!targetTaskID) {    // target is no task!
+        Session.set("CurrentDragTargetTaskID", undefined);
+    } else {    // target is task!
+        if (Session.get("CurrentDragTargetTaskID") !=  targetTaskID) {  // target task has changed?
+            Session.set("CurrentDragTargetTaskID", targetTaskID);
+        }
+    }
 
     // We dont' allow to drag over a <tr> that is not draggable itself.
     // e.g. we dont allow to drop on checked (finished) tasks
@@ -43,11 +36,7 @@ Template.task.MT_dragOver = function (evt) {
 
 
 Template.task.MT_dragLeave = function (evt) {
-    Session.set("CurrentDragTargetEnterCount", Session.get("CurrentDragTargetEnterCount")-1);
-    if (Session.get("CurrentDragTargetEnterCount") <= 1) {
-        Session.set("CurrentDragTargetEnterCount", 0);
-        Session.set("CurrentDragTargetTaskID", undefined);
-    }
+    Session.set("CurrentDragTargetTaskID", undefined);
     //console.log("DRAGLEAVE!" + Session.get("CurrentDragTargetEnterCount"));
     //console.log(evt);
 };
