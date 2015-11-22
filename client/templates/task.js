@@ -89,7 +89,7 @@ Template.task.helpers({
 });
 
 Template.task.events({
-    "click .toggle-checked": function () {
+    "click .toggle-checked": function (evt, tmpl) {
 
         // If task has repeat activated, we must clone a time-shifted version
         if (this.repeat && this.repeat.repeat) {
@@ -98,6 +98,9 @@ Template.task.events({
                 clonedTask = calcRepeatedDates(clonedTask); // shift startDate / dueDate
                 Meteor.call("insertTaskObject", clonedTask);
             }
+        } else if (evt.shiftKey) {
+            Materialize.toast('Cloned & Defered...', 2000, 'rounded');
+
         }
 
         // Set the checked property to the opposite of its current value
