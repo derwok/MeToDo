@@ -46,12 +46,12 @@ Template.taskdetails.helpers({
 
     selected_repeatSelInterval: function (optionText) {
         var repO = this.repeat;
-        // if no repeat active, then select "week" as default
+        // if no repeat active, then select "month" as default
         if ((!repO || !repO.repeat) && optionText == "month") {
             return {selected: "selected"};  // converted to HTML attribute: selected="selected"
         }
 
-        if (repO.everyInterval == optionText) {
+        if (repO && repO.everyInterval == optionText) {
             return {selected: "selected"};  // converted to HTML attribute: selected="selected"
         }
         return '';

@@ -120,16 +120,8 @@ Template.task.events({
     },
 
     "click .btnEditDetails": function () {
-        if (Session.get("editing_task_with_id")) {
-            return;
-        }
-
-        // Do we have to save some details?
-        if (Session.get("editing_taskdetails_with_id")) {
-            saveTaskDetails();
-        }
-
         if (Session.equals("editing_taskdetails_with_id", this._id)) {
+            saveTaskDetails();
             Session.set("editing_taskdetails_with_id", null);   // close this one
         } else {
             Session.set("editing_taskdetails_with_id", this._id);  // open this one
