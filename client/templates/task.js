@@ -92,7 +92,7 @@ Template.task.events({
     "click .toggle-checked": function (evt, tmpl) {
 
         // If task has repeat activated, we must clone a time-shifted version
-        if (this.repeat && this.repeat.repeat) {
+        if (!this.checked && this.repeat && this.repeat.repeat) {
             var clonedTask = Tasks.findOne(this._id);
             if (clonedTask) {
                 clonedTask = calcRepeatedDates(clonedTask); // shift startDate / dueDate
