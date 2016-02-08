@@ -30,17 +30,11 @@ if (Meteor.isClient) {
 
     Session.set("setting.showCompleted", false);
     Session.set("setting.showInbox", false);
-
-    task = new Task("my text client", true);
-    task.print();
 }  // Meteor.isClient
 
 
 ////////// Server Code! /////////
 if (Meteor.isServer) {
-    task = new Task("my text server", true);
-    task.print();
-
     Meteor.publish("tasks", function () {
         return Tasks.find({owner: this.userId});
     });
@@ -77,23 +71,11 @@ Meteor.methods({
             return;
         }
 
-        var orgText = text;
-        var result = taskParseAll(text);
-        var currentDate = new Date();
-        Tasks.insert({
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-
-            orgText: orgText,
-            text: result.text,
-            prio: result.prio,
-            tags: result.tags,
-            star: result.star,
-            startDate: result.startDate,
-            dueDate: result.dueDate,
-            createdAt: currentDate,
-            dateLastWrite: currentDate
-        });
+        var newTask = new Task();
+        newTask.owner = Meteor.userId();
+        newTask.username = Meteor.user().username;
+        newTask.orgText = text;
+        newTask.save();
     },
 
     updateTask: function (id, text) {
@@ -103,22 +85,9 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
 
-        var orgText = text;                 // TODO: Code Duplicate with addTask !!!
-        var result = taskParseAll(text);
-
-        Tasks.update(id, {$set: {
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-
-            orgText: orgText,
-            text: result.text,
-            prio: result.prio,
-            tags: result.tags,
-            star: result.star,
-            startDate: result.startDate,
-            dueDate: result.dueDate,
-            dateLastWrite: new Date()
-        }});
+        var updateTask = new Task(id);
+        updateTask.orgText = text;
+        updateTask.save();
     },
 
     updateTaskNotes: function (id, notestext) {
