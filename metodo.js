@@ -96,17 +96,13 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error("not-authorized");
         }
-
         if (!notestext) {
             notestext = "";
         }
 
-        var aTask = Tasks.findOne(id);
-        Tasks.update(id, {$set: {
-            notes: notestext,
-            hasDetails: ((notestext.length > 0) || (aTask.repeat && aTask.repeat.repeat)),
-            dateLastWrite: new Date()
-        }});
+        var notesTask = new Task(id);
+        notesTask.notes = notestext;
+        notesTask.save();
     },
 
 
@@ -117,13 +113,9 @@ Meteor.methods({
             throw new Meteor.Error("not-authorized");
         }
 
-        console.log("Repeat Object:"+JSON.stringify(repeatObj));
-        var aTask = Tasks.findOne(id);
-        Tasks.update(id, {$set: {
-            repeat: repeatObj,
-            hasDetails: (repeatObj.repeat || (aTask.notes && aTask.notes.length > 0)),
-            dateLastWrite: new Date()
-        }});
+        var repeatTask = new Task(id);
+        repeatTask.repeat = repeatObj;
+        repeatTask.save();
     },
 
 
@@ -145,38 +137,31 @@ Meteor.methods({
         TasksArchive.remove({owner: Meteor.userId()});
     },
 
+    // for bulk insert via JSON import feature
     insertTaskObject: function (taskObject) {
         console.log("Meteor.methods.insertTaskObject");
 
-        delete taskObject["_id"];
-        taskObject["owner"] = Meteor.userId();
-        taskObject["username"] = Meteor.user().username;
-        taskObject["dateLastWrite"] = new Date(taskObject["dateLastWrite"]);
-        taskObject["createdAt"] = new Date (taskObject["createdAt"]);
+        delete taskObject["_id"];                           // DB will generate a new one!
+        taskObject["owner"] = Meteor.userId();              // make my own!
+        taskObject["username"] = Meteor.user().username;    // make my own!
+        taskObject["dateLastWrite"] = new Date(taskObject["dateLastWrite"]);    // convert JSON string dates to Date objects
+        taskObject["createdAt"] = new Date (taskObject["createdAt"]);           // convert JSON string dates to Date objects
 
         Tasks.insert(taskObject);
     },
 
     setChecked: function (taskId, setChecked) {
         console.log("Meteor.methods.setChecked");
-        Tasks.update(taskId, {$set: {checked: setChecked,
-                                    dateLastWrite: new Date()}});
+        var checkTask = new Task (taskId);
+        checkTask.checked = setChecked;
+        checkTask.save();
     },
 
     setStar: function (taskId, setStar) {
         console.log("Meteor.methods.setStar");
-        var task = Tasks.findOne(taskId);
-        if (task) {
-            var orgText = task.orgText;
-            if (setStar) {
-                orgText += " **";
-            } else {
-                orgText = orgText.replace(/\s*\*\*/, "");
-            }
-        }
-        Tasks.update(taskId, {$set: {star: setStar,
-            orgText: orgText,
-            dateLastWrite: new Date()}});
+        var starTask = new Task (taskId);
+        starTask.star = setStar;
+        starTask.save();
     },
 
     addSearch: function (searchtext) {
@@ -223,12 +208,3 @@ Meteor.methods({
     }
 
 });
-
-//if (Meteor.isServer) {
-//    if (Searches.find().count() == 0) {
-//        Meteor.call("addSearch", "?@work");
-//        Meteor.call("addSearch", "?!@work");
-//        Meteor.call("addSearch", "?\*\*");
-//        Meteor.call("addSearch", "?!@");
-//    }
-//}
