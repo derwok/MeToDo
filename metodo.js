@@ -30,11 +30,17 @@ if (Meteor.isClient) {
 
     Session.set("setting.showCompleted", false);
     Session.set("setting.showInbox", false);
+
+    task = new Task("my text client", true);
+    task.print();
 }  // Meteor.isClient
 
 
 ////////// Server Code! /////////
 if (Meteor.isServer) {
+    task = new Task("my text server", true);
+    task.print();
+
     Meteor.publish("tasks", function () {
         return Tasks.find({owner: this.userId});
     });
