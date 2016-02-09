@@ -58,7 +58,7 @@ Template.nav.events({
     "click #mnuTaskExport": function (evt, tmpl) {
         evt.preventDefault();
         var t2 = Tasks.find().fetch();
-        console.log("Tasks:"+JSON.stringify(t2));
+        console.log("Tasks:"+JSON.stringify(t2, null, 4));
     },
 
     "click #mnuShowInbox": function (evt, tmpl) {
