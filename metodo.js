@@ -72,10 +72,20 @@ Meteor.methods({
         }
 
         var newTask = new Task();
-        newTask.owner = Meteor.userId();
-        newTask.username = Meteor.user().username;
         newTask.orgText = text;
-        newTask.save();
+        newTask.save(Meteor.userId(), Meteor.user().username);
+    },
+
+    // for bulk insert via JSON import feature
+    addRawTaskObject: function (rawTaskObj) {
+        console.log("Meteor.methods.addRawTaskObject");
+        // Make sure the user is logged in before inserting a task
+        if (!Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }
+        var task = new Task();
+        task.cloneFromRawTaskObj(rawTaskObj);
+        task.save(Meteor.userId(), Meteor.user().username);
     },
 
     updateTask: function (id, text) {
@@ -135,19 +145,6 @@ Meteor.methods({
         }
         Tasks.remove({owner: Meteor.userId()});
         TasksArchive.remove({owner: Meteor.userId()});
-    },
-
-    // for bulk insert via JSON import feature
-    insertTaskObject: function (taskObject) {
-        console.log("Meteor.methods.insertTaskObject");
-
-        delete taskObject["_id"];                           // DB will generate a new one!
-        taskObject["owner"] = Meteor.userId();              // make my own!
-        taskObject["username"] = Meteor.user().username;    // make my own!
-        taskObject["dateLastWrite"] = new Date(taskObject["dateLastWrite"]);    // convert JSON string dates to Date objects
-        taskObject["createdAt"] = new Date (taskObject["createdAt"]);           // convert JSON string dates to Date objects
-
-        Tasks.insert(taskObject);
     },
 
     setChecked: function (taskId, setChecked) {

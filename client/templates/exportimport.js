@@ -29,12 +29,8 @@ Template.exportimport.events({
             Meteor.call("removeAllTasksOfUser");
             if(Tasks.find().count() === 0) {
                 for (var i=0; i<tasksarray.length; i++) {
-                    var taskObj = tasksarray[i];
-
-                    // we have to explicitly convert all Date objects  from JSON date strings to real date objects
-                    fixDateObjectsRecursive(taskObj);
-
-                    Meteor.call("insertTaskObject", taskObj);
+                    var rawTaskObj = tasksarray[i];
+                    Meteor.call("addRawTaskObject", rawTaskObj);
                 }
                 alert("Imported "+tasksarray.length+ " tasks: OK");
             } else {
