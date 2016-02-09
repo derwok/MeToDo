@@ -26,3 +26,5 @@ iron:router
 materialize:materialize
 ecmascript
 es5-shim
+sanjo:jasmine
+velocity:html-reporter
